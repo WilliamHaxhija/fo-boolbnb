@@ -43,7 +43,7 @@ export default {
 <template>
     <section class="py-4">
         <div class="container">
-            <div class="row">
+            <div class="row row-cols-1 row-cols-md-2">
                 <div class="col">
                     <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi">
                     </AppSearch>
