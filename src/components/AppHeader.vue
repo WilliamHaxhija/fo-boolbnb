@@ -10,7 +10,7 @@ export default {
          <!-- Navbar -->
          <nav class="navbar navbar-expand-lg navbar-light ">
         <!-- Container wrapper -->
-            <div class="container-fluid">
+            <div class="container d-flex flex-wrap aligne-items-center justify-content-between">
                 <!-- Toggle button -->
                 <button
                 data-mdb-collapse-init
