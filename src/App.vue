@@ -1,14 +1,14 @@
 <script>
-import AppHome from "./pages/AppHome.vue";
+
 export default {
-  components: {
-    AppHome
-  }
+    
 }
 </script>
 
 <template>
-  <AppHome></AppHome>
+    <main>
+        <router-view></router-view>
+    </main>
 </template>
 
 <style lang="scss">

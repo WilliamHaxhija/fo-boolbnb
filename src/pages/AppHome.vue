@@ -1,13 +1,17 @@
 <script>
-
+import AppHero from '../components/AppHero.vue';
 export default {
-    name: 'AppHome'
+    name: 'AppHome',
+    components: {
+        AppHero
+    }
 }
 
 </script>
 
 <template>
-<h1>CIAO</h1>
+<h1>AppHome</h1>
+<AppHero></AppHero>
 </template>
 
 <style scoped lang="scss"></style>
