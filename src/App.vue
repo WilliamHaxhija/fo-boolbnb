@@ -8,9 +8,9 @@ export default {
 </script>
 
 <template>
-<AppHome></AppHome>
+  <AppHome></AppHome>
 </template>
 
 <style lang="scss">
-
+@use './style/generic.scss';
 </style>
