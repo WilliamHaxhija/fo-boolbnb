@@ -9,7 +9,7 @@ export default {
         <header>
             <div>
                 <!-- Navbar -->
-                <nav class="navbar navbar-expand-lg navbar-light shadow-sm p-1 mb-5 rounded  ">
+                <nav class="navbar navbar-expand-lg navbar-light p-1 mb-5 rounded  ">
                     <!-- Container wrapper -->
                     <div class="container d-flex flex-wrap aligne-items-center justify-content-between">
                         <!-- Toggle button -->
