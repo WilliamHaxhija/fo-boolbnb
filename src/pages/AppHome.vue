@@ -10,8 +10,7 @@ export default {
 </script>
 
 <template>
-<h1>AppHome</h1>
-<AppHero></AppHero>
+    <AppHero></AppHero>
 </template>
 
 <style scoped lang="scss"></style>
