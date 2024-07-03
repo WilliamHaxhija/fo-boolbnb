@@ -30,20 +30,21 @@ export default {
                         <!-- Collapsible wrapper -->
 
                         <!-- Right elements -->
-                        <div class="d-flex align-items-center">
-
-                            <!-- Notifications -->
-
+                        <div class="d-flex align-items-center dropdown ">
+                    
+                            <!--Drop down For Login -->
                             <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button"
+                                <button class="btn btn-primary dropdown-toggle" type="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                 </button>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="#">Login</a></li>
-                                    <li><a class="dropdown-item" href="#">Registrati</a></li>
+                                    <li><a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a></li>
+                                    <li><a class="dropdown-item" href="http://127.0.0.1:8000/register">Registrati</a></li>
                                 </ul>
                             </div>
                         </div>
+
+
                         <!-- Right elements -->
                     </div>
                     <!-- Container wrapper -->
@@ -67,4 +68,6 @@ export default {
     background-size: cover;
 
 }
+
+
 </style>
