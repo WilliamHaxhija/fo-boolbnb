@@ -37,14 +37,14 @@ export default {
                                 <button class="ms_Btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <span class="ms_svgContainer">
                                         <div fill="white" height="1.6em">
-                                            <i class="fa-solid fa-arrow-down text-white"></i>
+                                            <i class="fa-solid fa-user text-white"></i>
                                         </div>
                                     </span>
                                     <span class="ms_BG"></span>
                                 </button>
-                                <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="http://127.0.0.1:8000/login">Login</a></li>
-                                    <li><a class="dropdown-item" href="http://127.0.0.1:8000/register">Registrati</a>
+                                <ul class="dropdown-menu ms-bg-drop-down px-2">
+                                    <li class="" ><a class="text-white text-decoration-none" href="http://127.0.0.1:8000/login">Login</a></li>
+                                    <li><a class="text-white text-decoration-none" href="http://127.0.0.1:8000/register">Registrati</a>
                                     </li>
                                 </ul>
                             </div>
@@ -128,5 +128,9 @@ export default {
 .ms_Btn:hover .ms_BG {
     transform: rotate(35deg);
     transform-origin: bottom;
+}
+
+.ms-bg-drop-down{
+    background: #0b1537;
 }
 </style>
