@@ -24,7 +24,7 @@ export default {
             }
         },
         getApartmentsFromApi() {
-            let apiApartmentsSearch = `http://192.168.1.155:8000/api/apartments`
+            let apiApartmentsSearch = `${store.apiBaseUrl}/api/apartments`
             axios.get(apiApartmentsSearch, {
                 params: {
                     latitude: store.userSelection.position.lat,
