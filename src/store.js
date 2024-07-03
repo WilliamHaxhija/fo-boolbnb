@@ -5,7 +5,7 @@ export const store = reactive({
         tomTomKey: 'fUtGP9sbSFIvB3B4Rk2SmG2E8l5VZSRj',
         countrySet: 'ITA',
     },
-    apiBaseUrl: 'http://127.0.0.1:8000',
+    apiBaseUrl: 'http://localhost:8000',
     userInputSearch: '',
     userSelection: null,
     suggestedAddresses: [],
