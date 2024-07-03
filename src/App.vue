@@ -13,4 +13,5 @@ export default {
 
 <style lang="scss">
 @use './style/generic.scss';
+@use './partials/variables' as *;
 </style>
