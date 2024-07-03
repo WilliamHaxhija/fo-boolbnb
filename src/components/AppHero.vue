@@ -9,18 +9,32 @@ export default {
     },
     data() {
         return {
-            store
+            store,
+            radius: 20
         };
     },
     methods: {
         getSuggestionsAddressFromApi() {
-            let apiTomTomSearch = `https://api.tomtom.com/search/2/search/${store.userInputSearch}.json?countrySet=${store.queryParams.countrySet}&key=${store.queryParams.tomTomKey}`
+            let apiTomTomSearch = `https://api.tomtom.com/search/2/search/${store.userInputSearch}.json?countrySet=${store.tomTomQueryParams.countrySet}&key=${store.tomTomQueryParams.tomTomKey}`
             if (store.userInputSearch !== '') {
                 axios.get(apiTomTomSearch)
                     .then((response) => {
                         store.suggestedAddresses = response.data.results;
                     });
             }
+        },
+        getApartmentsFromApi() {
+            let apiApartmentsSearch = `http://192.168.1.155:8000/api/apartments`
+            axios.get(apiApartmentsSearch, {
+                params: {
+                    latitude: store.userSelection.position.lat,
+                    longitude: store.userSelection.position.lon,
+                    radius: this.radius
+                }
+            })
+                .then((response) => {
+                    store.searchedApartments = response.data.apartments;
+                });
         }
     }
 }
@@ -31,7 +45,8 @@ export default {
         <div class="container">
             <div class="row">
                 <div class="col">
-                    <AppSearch @search="getSuggestionsAddressFromApi"></AppSearch>
+                    <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi">
+                    </AppSearch>
                 </div>
                 <div class="col">
                     <!-- image -->
