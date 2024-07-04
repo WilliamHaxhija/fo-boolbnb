@@ -2,10 +2,10 @@ import { reactive } from "vue";
 
 export const store = reactive({
     tomTomQueryParams: {
-        tomTomKey: 'fUtGP9sbSFIvB3B4Rk2SmG2E8l5VZSRj',
+        tomTomKey: import.meta.env.VITE_TOM_TOM_API_KEY,
         countrySet: 'ITA',
     },
-    apiBaseUrl: 'http://localhost:8000',
+    apiBaseUrl: import.meta.env.VITE_API_URL,
     userInputSearch: '',
     userSelection: null,
     suggestedAddresses: [],
