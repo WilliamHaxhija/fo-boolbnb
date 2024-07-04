@@ -28,6 +28,15 @@ export default {
                 <h5 class="card-title">{{ apartmentInfo.title }}</h5>
                 <p class="card-text">{{ apartmentInfo.address }}</p>
                 <p class="card-text">Distanza: {{ Math.round(apartmentInfo.distance) }}km</p>
+                <!-- scorriamo l'array dei servizi e li stampiamo in pagina  -->
+                <p class="card-text">
+                    <ul>
+                        <li v-for="service in apartmentInfo.services" :key="service.id">
+                            {{ service.name }}
+                        </li>
+                   </ul>
+                </p>
+                
                 <router-link :to="{ name: 'single-apartment', params: { slug: apartmentInfo.slug } }">Info</router-link>
             </div>
         </div>
