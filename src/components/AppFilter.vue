@@ -1,8 +1,36 @@
 <script>
+import axios from 'axios';
+import { store } from '../store';
 export default {
-    name:'AppFilter'
-}
+    name: 'AppFilter',
+    data() {
+        return {
+            store,
+            radius: 20,
+            services: [],
+            selectedServices: []
+        };
+    },
+    methods: {
+        // Funzione per recuperare i servizi dall'API con gestione degli errori
+        getServicesFromApi() {
+            let apiServicesUrl = `${store.apiBaseUrl}/api/services`;
+            axios.get(apiServicesUrl).then(response => {
+                this.services = response.data;
+                console.log(this.services)
+            }).catch(error => {
+                console.error('Errore nel recupero dei servizi:', error);
+            });
+        },
+        
+    },
+    mounted() {
+        // Richiamo della funzione per recuperare i servizi all'inizializzazione del componente
+        this.getServicesFromApi();
+    }
+};
 </script>
+
 
 <template>
     <button class="btn btn-primary mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
@@ -10,16 +38,23 @@ export default {
     </button>
 
     <div class="offcanvas offcanvas-start" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
-    <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="staticBackdropLabel"></h5>
+      <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="staticBackdropLabel">Ecco i nostri servizi</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
+      </div>
+      <div class="offcanvas-body">
         <div>
-        I will not close if you click outside of me.
+          <ul>
+            <li class="d-flex align-items-center" v-for="service in services" :key="service.id">
+              <input type="checkbox" :id="'service-' + service.id" v-model="selectedServices" :value="service.id">
+              <label :for="'service-' + service.id" class="ms-2">{{ service.name }}</label>
+            </li>
+          </ul>
+          <button class="btn btn-primary mt-3" @click="applyFilters">Applica filtri</button>
         </div>
+      </div>
     </div>
-    </div>
+   
 </template>
 
 <style lang="scss"></style>
