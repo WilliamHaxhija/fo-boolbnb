@@ -1,8 +1,13 @@
 <script>
 import axios from 'axios';
 import { store } from '../store';
+import ApartmentCard from '../components/ApartmentCard.vue';
+
 export default {
     name: 'SingleApartment',
+    components: {
+        ApartmentCard
+    },
     data() {
         return {
             store,
@@ -16,10 +21,6 @@ export default {
                     this.apartment = response.data.apartment;
                     console.log(this.apartment);
                 });
-
-        },
-        printImage(imageUrl) {
-            return `${store.apiBaseUrl}/storage/${imageUrl}`;
         }
     },
     mounted() {
@@ -29,20 +30,8 @@ export default {
 </script>
 
 <template>
-    <div class="col d-flex justify-content-center g-3">
-        <!-- <div class="card" style="width: 18rem;">
-            <div v-if="apartment.image">
-                <img :src="printImage(apartment.image)" class="card-img-top"
-                :alt="apartment.slug">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ apartment.title }}</h5>
-                <p class="card-text">{{ apartment.address }}</p>
-                <p class="card-text">Distanza: {{ Math.round(apartment.distance) }}km</p>
-                <p class="card-text">Descrizione: {{ apartment.description }}</p>
-            </div>
-        </div> -->
-    </div>
+    <ApartmentCard v-if="apartment" :key="apartment.id" :apartmentInfo="apartment"></ApartmentCard>
+    <div v-else>Ciao</div>
 </template>
 
 <style scoped lang="scss"></style>
