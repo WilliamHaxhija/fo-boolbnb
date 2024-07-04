@@ -5,6 +5,7 @@ export const store = reactive({
         tomTomKey: import.meta.env.VITE_TOM_TOM_API_KEY,
         countrySet: 'ITA',
     },
+    apartment: null,
     apiBaseUrl: import.meta.env.VITE_API_URL,
     userInputSearch: '',
     userSelection: null,
