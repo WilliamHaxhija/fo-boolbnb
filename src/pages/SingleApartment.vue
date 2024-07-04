@@ -11,20 +11,20 @@ export default {
     },
     methods: {
         getSingleApartment() {
-            axios.get(`${store.apiBaseUrl}/Api/apartments/${this.$route.params.slug}`)
-            .then((response) => {
-                this.apartment = response.data.apartment;
-                console.log(this.apartment);
-            });
-            
+            axios.get(`${store.apiBaseUrl}/api/apartments/${this.$route.params.slug}`)
+                .then((response) => {
+                    this.apartment = response.data.apartment;
+                    console.log(this.apartment);
+                });
+
         },
         printImage(imageUrl) {
             return `${store.apiBaseUrl}/storage/${imageUrl}`;
         }
     },
-     mounted() {
+    mounted() {
         this.getSingleApartment()
-     }
+    }
 }
 </script>
 
