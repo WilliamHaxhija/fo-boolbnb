@@ -2,11 +2,13 @@
 import axios from 'axios';
 import { store } from '../store';
 import ApartmentCard from '../components/ApartmentCard.vue';
+import AppMap from '../components/AppMap.vue';
 
 export default {
     name: 'SingleApartment',
     components: {
-        ApartmentCard
+        ApartmentCard,
+        AppMap
     },
     data() {
         return {
@@ -19,7 +21,6 @@ export default {
             axios.get(`${store.apiBaseUrl}/api/apartments/${this.$route.params.slug}`)
                 .then((response) => {
                     this.apartment = response.data.apartment;
-                    console.log(this.apartment);
                 });
         }
     },
@@ -30,8 +31,15 @@ export default {
 </script>
 
 <template>
-    <ApartmentCard v-if="apartment" :key="apartment.id" :apartmentInfo="apartment"></ApartmentCard>
-    <div v-else>Ciao</div>
+    <section class="apartment">
+        <div class="container">
+            <ApartmentCard v-if="apartment" :key="apartment.id" :apartmentInfo="apartment"></ApartmentCard>
+            <div v-else>Ciao</div>
+        </div>
+    </section>
+    <section class="map pt-4">
+        <AppMap :apartmentInfo="apartment"></AppMap>
+    </section>
 </template>
 
 <style scoped lang="scss"></style>
