@@ -50,8 +50,8 @@ export default {
             <p>Qui puoi contattare il proprietario dell'appartamento e chiedere informazioni in merito.</p>
             <form @submit.prevent="sendMessage">
                 <div class="mb-3">
-                    <label for="name" class="form-label">Indirizzo e-mail</label>
-                    <input type="text" class="form-control" id="name" placeholder="Il tuo nome" name="name" v-model="name" required>
+                    <label for="name" class="form-label">Nome e Cognome</label>
+                    <input type="text" class="form-control" id="name" placeholder="Giuseppe Amato" name="name" v-model="name" required>
                 </div>
                 <div class="mb-3">
                     <label for="email" class="form-label">Indirizzo e-mail</label>
@@ -59,7 +59,7 @@ export default {
                 </div>
                 <div class="mb-3">
                     <label for="text" class="form-label">Messaggio</label>
-                    <textarea class="form-control" id="text" rows="3" name="message" v-model="text" required></textarea>
+                    <textarea class="form-control" id="text" rows="3" placeholder="Digita il messaggio" name="message" v-model="text" required></textarea>
                 </div>
                 <button type="submit" class="btn btn-primary">Invia Messaggio</button>
             </form>
