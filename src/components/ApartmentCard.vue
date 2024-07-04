@@ -28,7 +28,7 @@ export default {
                 <h5 class="card-title">{{ apartmentInfo.title }}</h5>
                 <p class="card-text">{{ apartmentInfo.address }}</p>
                 <p class="card-text">Distanza: {{ Math.round(apartmentInfo.distance) }}km</p>
-                <a href="#" class="btn btn-primary">Visualizza dettagli</a>
+                <router-link :to="{ name: 'single-apartment', params: { slug: apartmentInfo.slug } }">Info</router-link>
             </div>
         </div>
     </div>

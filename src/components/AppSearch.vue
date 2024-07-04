@@ -22,7 +22,7 @@ export default {
     <div class="form-floating mb-1 d-flex align-items-center border rounded-pill">
         <input type="text" class="form-control border border-0 rounded-pill" id="floatingInput" placeholder="search"
             v-model="store.userInputSearch" @keyup="$emit('search')">
-        <label for=" floatingInput">Cerca destinazioni</label>
+        <label for="floatingInput">Cerca destinazioni</label>
         <div class="search position-absolute cursor-pointer">
             <router-link :to="{ name: 'results' }" @click="$emit('dbResults')">
                 <svg width=" 24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
