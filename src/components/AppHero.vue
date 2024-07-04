@@ -41,14 +41,14 @@ export default {
 </script>
 
 <template>
-    <section class="py-4">
+    <section class="py-4 d-flex align-items-center" :class="$route.name === 'home' ? 'ms_hero' : ''">
         <div class="container">
-            <div class="row row-cols-1 row-cols-md-2">
+            <div class="row" :class="$route.name === 'home' ? 'row-cols-1 row-cols-md-2' : ''">
                 <div class="col">
                     <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi">
                     </AppSearch>
                 </div>
-                <div class="col">
+                <div v-if="$route.name === 'home'" class="col">
                     <!-- image -->
                 </div>
             </div>
@@ -56,4 +56,13 @@ export default {
     </section>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.ms_hero {
+    margin-top: -88px;
+    min-height: 700px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url(../assets/img/image_hero.webp);
+    background-position: center;
+}
+</style>

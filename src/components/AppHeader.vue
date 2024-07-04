@@ -5,78 +5,58 @@ export default {
 </script>
 
 <template>
-    <section class="ms_hero">
-        <header>
-            <div>
-                <!-- Navbar -->
-                <nav class="navbar navbar-expand-lg navbar-light p-1 mb-5 rounded  ">
-                    <!-- Container wrapper -->
-                    <div class="container d-flex flex-wrap aligne-items-center justify-content-between">
-                        <!-- Toggle button -->
-                        <button data-mdb-collapse-init class="navbar-toggler" type="button"
-                            data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                            <i class="fas fa-bars"></i>
+    <header class="position-sticky top-0 z-1">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-light p-1 rounded  ">
+            <!-- Container wrapper -->
+            <div class="container d-flex flex-wrap aligne-items-center justify-content-between">
+                <!-- Toggle button -->
+                <button data-mdb-collapse-init class="navbar-toggler" type="button"
+                    data-mdb-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Collapsible wrapper -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <!-- Our Logo -->
+                    <router-link :to="{ name: 'home' }" class="navbar-brand mt-2 mt-lg-0">
+                        <img src="../assets/img/logo_bnb.png" height="70" alt="MDB Logo" loading="lazy" />
+                    </router-link>
+
+                </div>
+                <!-- Collapsible wrapper -->
+
+                <!-- Right elements -->
+                <div class="d-flex align-items-center dropdown ">
+
+                    <!--Drop down For Login -->
+                    <div class="dropdown">
+                        <button class="ms_Btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <span class="ms_svgContainer">
+                                <div fill="white" height="1.6em">
+                                    <i class="fa-solid fa-user text-white"></i>
+                                </div>
+                            </span>
+                            <span class="ms_BG"></span>
                         </button>
-
-                        <!-- Collapsible wrapper -->
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <!-- Our Logo -->
-                            <a class="navbar-brand mt-2 mt-lg-0" href="#">
-                                <img src="../assets/img/logo_bnb.png" height="70" alt="MDB Logo" loading="lazy" />
-                            </a>
-
-                        </div>
-                        <!-- Collapsible wrapper -->
-
-                        <!-- Right elements -->
-                        <div class="d-flex align-items-center dropdown ">
-
-                            <!--Drop down For Login -->
-                            <div class="dropdown">
-                                <button class="ms_Btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <span class="ms_svgContainer">
-                                        <div fill="white" height="1.6em">
-                                            <i class="fa-solid fa-user text-white"></i>
-                                        </div>
-                                    </span>
-                                    <span class="ms_BG"></span>
-                                </button>
-                                <ul class="dropdown-menu ms-bg-drop-down px-2">
-                                    <li class="" ><a class="text-white text-decoration-none" href="http://127.0.0.1:8000/login">Login</a></li>
-                                    <li><a class="text-white text-decoration-none" href="http://127.0.0.1:8000/register">Registrati</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-
-
-
-
-                        <!-- Right elements -->
+                        <ul class="dropdown-menu ms-bg-drop-down px-2">
+                            <li class=""><a class="text-white text-decoration-none"
+                                    href="http://127.0.0.1:8000/login">Login</a></li>
+                            <li><a class="text-white text-decoration-none"
+                                    href="http://127.0.0.1:8000/register">Registrati</a>
+                            </li>
+                        </ul>
                     </div>
-                    <!-- Container wrapper -->
-                </nav>
-                <!-- Navbar -->
+                </div>
+                <!-- Right elements -->
             </div>
-        </header>
-        <main class="container">
-
-        </main>
-    </section>
-
+        </nav>
+        <!-- Navbar -->
+    </header>
 </template>
 
 <style scoped lang="scss">
-.ms_hero {
-    min-height: 700px;
-    background-image: url(../assets/img/image_hero.webp);
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-
-}
-
 .ms_Btn {
     width: 45px;
     height: 45px;
@@ -118,8 +98,6 @@ export default {
     transition: all .3s;
 }
 
-
-
 .ms_Btn:hover .ms_svgContainer {
     background-color: rgba(156, 156, 156, 0.466);
     backdrop-filter: blur(4px);
@@ -130,7 +108,7 @@ export default {
     transform-origin: bottom;
 }
 
-.ms-bg-drop-down{
+.ms-bg-drop-down {
     background: #0b1537;
 }
 </style>
