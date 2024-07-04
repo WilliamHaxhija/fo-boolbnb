@@ -12,15 +12,14 @@ export default {
     },
     data() {
         return {
-            store,
-            apartment: null
+            store
         }
     },
     methods: {
         getSingleApartment() {
             axios.get(`${store.apiBaseUrl}/api/apartments/${this.$route.params.slug}`)
                 .then((response) => {
-                    this.apartment = response.data.apartment;
+                    store.apartment = response.data.apartment;
                 });
         }
     },
@@ -33,12 +32,12 @@ export default {
 <template>
     <section class="apartment">
         <div class="container">
-            <ApartmentCard v-if="apartment" :key="apartment.id" :apartmentInfo="apartment"></ApartmentCard>
+            <ApartmentCard v-if="store.apartment" :key="store.apartment.id" :apartmentInfo="store.apartment"></ApartmentCard>
             <div v-else>Ciao</div>
         </div>
     </section>
     <section class="map pt-4">
-        <AppMap :apartmentInfo="apartment"></AppMap>
+        <AppMap :apartmentInfo="store.apartment"></AppMap>
     </section>
 </template>
 
