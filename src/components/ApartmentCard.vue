@@ -1,8 +1,12 @@
 <script>
 import { store } from '../store';
+import MessageForm from './MessageForm.vue';
 
 export default {
     name: 'ApartmentCard',
+    components: {
+        MessageForm
+    },
     props: {
         apartmentInfo: Object
     },
@@ -28,8 +32,8 @@ export default {
                 <h5 class="card-title">{{ apartmentInfo.title }}</h5>
                 <p class="card-text">{{ apartmentInfo.address }}</p>
                 <p v-if="$route.name === 'single-apartment'" class="card-text">{{ apartmentInfo.description }}</p>
-                <p v-if="$route.name === 'results'" class="card-text">Distanza: {{ Math.round(apartmentInfo.distance)
-                    }}km
+                <p v-if="$route.name === 'results'" class="card-text">A {{ Math.round(apartmentInfo.distance)
+                    }} km dal punto cercato
                 </p>
                 <p v-if="$route.name === 'single-apartment'" class="card-text">Numero di stanze: {{
                     apartmentInfo.number_of_rooms }}</p>
@@ -42,7 +46,8 @@ export default {
                     apartmentInfo.square_meters }}</p>
                 <router-link v-if="$route.name === 'results'"
                     :to="{ name: 'single-apartment', params: { slug: apartmentInfo.slug } }">Info</router-link>
-                <a href="" v-if="$route.name === 'single-apartment'">Contatta l'host</a>
+                <button v-if="$route.name === 'single-apartment'" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Contatta l'host</button>
+                <MessageForm></MessageForm>
             </div>
         </div>
     </div>

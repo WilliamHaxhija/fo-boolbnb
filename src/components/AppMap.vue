@@ -42,8 +42,8 @@ export default {
 
 <template>
     <div class="container d-flex justify-content-center">
-        <div class="card" style="width: 62.5rem;">
-            <div id="map">
+        <div class="card mb-5" style="width: 62.5rem;">
+            <div  id="map">
             </div>
         </div>
     </div>
