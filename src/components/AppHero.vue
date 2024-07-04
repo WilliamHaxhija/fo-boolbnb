@@ -2,10 +2,12 @@
 import axios from 'axios';
 import { store } from '../store';
 import AppSearch from '../components/AppSearch.vue';
+import AppFilter from './AppFilter.vue';
 export default {
     name: 'AppHero',
     components: {
-        AppSearch
+        AppSearch,
+        AppFilter
     },
     data() {
         return {
@@ -45,13 +47,16 @@ export default {
         <div class="container">
             <div class="row" :class="$route.name === 'home' ? 'row-cols-1 row-cols-md-2' : ''">
                 <div class="col">
-                    <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi">
+                    <AppFilter ></AppFilter>
+                    <AppSearch  @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi">
                     </AppSearch>
                 </div>
                 <div v-if="$route.name === 'home'" class="col">
                     <!-- image -->
                 </div>
             </div>
+
+            
         </div>
     </section>
 </template>
