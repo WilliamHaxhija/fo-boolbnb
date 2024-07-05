@@ -14,5 +14,6 @@ export const store = reactive({
     selectedServices: [],
     numberOfRooms: 0,
     numberOfBeds: 0,
-    numberOfBathrooms: 0
+    numberOfBathrooms: 0,
+    userRadius:0
 });

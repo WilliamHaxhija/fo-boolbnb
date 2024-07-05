@@ -56,6 +56,10 @@ export default {
                   <label for="numberOfBathrooms">Numero di bagni</label>
                   <input id="numberOfBathrooms" type="number" class="small-input" v-model="store.numberOfBathrooms">
                 </li>
+                <li>
+                  <label for="userRadius">Raggio di km</label>
+                  <input id="userRadius" type="number" class="small-input" v-model="store.userRadius">
+                </li>
                 <li class="d-flex align-items-center" v-for="service in services" :key="service.id">
                   <input type="checkbox" :id="'service-' + service.id" class="checkbox-input" v-model="store.selectedServices" :value="service.id">
                   <label :for="'service-' + service.id" class="ms-2">{{ service.name }}</label>
