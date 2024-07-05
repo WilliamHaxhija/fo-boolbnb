@@ -21,6 +21,13 @@ export default {
                 .then((response) => {
                     store.apartment = response.data.apartment;
                 });
+        },
+        postIpToApi() {
+            axios.post(`${store.apiBaseUrl}/visits`)
+                .then((response) => {
+                    this.ip = response.data.ip;
+                    this.apartmentId = store.apartment.id;
+                });
         }
     },
     mounted() {
