@@ -11,6 +11,6 @@ export const store = reactive({
     userSelection: null,
     suggestedAddresses: [],
     searchedApartments: [],
-
-
+    selectedServices: [],
+    numberOfRooms: 0
 });

@@ -13,7 +13,7 @@ export default {
         return {
             store,
             radius: 20
-          
+
         };
     },
     methods: {
@@ -27,18 +27,20 @@ export default {
             }
         },
         getApartmentsFromApi() {
-        let apiApartmentsSearch = `${store.apiBaseUrl}/api/apartments`
-        axios.get(apiApartmentsSearch, {
-            params: {
-                latitude: store.userSelection.position.lat,
-                longitude: store.userSelection.position.lon,
-                radius: this.radius
-            }
-        })
-            .then((response) => {
-                store.searchedApartments = response.data.apartments;
-            });
-    }
+            let apiApartmentsSearch = `${store.apiBaseUrl}/api/apartments`
+            axios.get(apiApartmentsSearch, {
+                params: {
+                    latitude: store.userSelection.position.lat,
+                    longitude: store.userSelection.position.lon,
+                    radius: this.radius,
+                    services: store.selectedServices,
+                    number_of_rooms: store.numberOfRooms
+                }
+            })
+                .then((response) => {
+                    store.searchedApartments = response.data.apartments;
+                });
+        }
     }
 }
 </script>
@@ -48,9 +50,8 @@ export default {
         <div class="container">
             <div class="row" :class="$route.name === 'home' ? 'row-cols-1 row-cols-md-2' : ''">
                 <div class="col">
-                    <AppFilter ></AppFilter>
-                    <!-- funzione getApartmentsFromApi presa dallo store -->
-                    <AppSearch  @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi">
+                    <AppFilter @advancedSearch="getApartmentsFromApi" @resetFilters="getApartmentsFromApi"></AppFilter>
+                    <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi">
                     </AppSearch>
                 </div>
                 <div v-if="$route.name === 'home'" class="col">
@@ -58,7 +59,7 @@ export default {
                 </div>
             </div>
 
-            
+
         </div>
     </section>
 </template>
