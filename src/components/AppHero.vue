@@ -34,7 +34,9 @@ export default {
                     longitude: store.userSelection.position.lon,
                     radius: this.radius,
                     services: store.selectedServices,
-                    number_of_rooms: store.numberOfRooms
+                    number_of_rooms: store.numberOfRooms,
+                    number_of_beds: store.numberOfBeds,
+                    number_of_bathrooms: store.numberOfBathrooms,
                 }
             })
                 .then((response) => {

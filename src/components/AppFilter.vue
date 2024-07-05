@@ -31,34 +31,44 @@ export default {
 
 <template>
   <button class="btn btn-primary mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
-    aria-controls="staticBackdrop">
-    Filtra appartamenti
+     aria-controls="staticBackdrop">
+  Filtra appartamenti
   </button>
   <div class="offcanvas offcanvas-start rounded-4 my-3" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
-    aria-labelledby="staticBackdropLabel">
-    <div class="offcanvas-header">
-      <h5 class="offcanvas-title" id="staticBackdropLabel">Ecco i nostri servizi</h5>
-      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-    </div>
-    <div class="offcanvas-body">
-      <div>
-        <form>
-          <ul>
-            <li class="d-flex align-items-center" v-for="service in services" :key="service.id">
-              <input type="checkbox" :id="'service-' + service.id" v-model="store.selectedServices" :value="service.id"
-                @click="">
-              <label :for="'service-' + service.id" class="ms-2">{{ service.name }}</label>
-            </li>
-            <input type="number" v-model="store.numberOfRooms">
-          </ul>
-        </form>
-        <button class="btn btn-primary mt-3" @click="$emit('advancedSearch')">Applica filtri</button>
-        <button class="btn btn-secondary mt-3 close-filter" @click="$emit('resetFilters')">Rest
-          filtri</button>
-      </div>
-    </div>
+     aria-labelledby="staticBackdropLabel">
+     <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="staticBackdropLabel">Ecco i nostri servizi</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+     </div>
+     <div class="offcanvas-body">
+        <div>
+           <form>
+              <ul>
+                <li>
+                  <label for="numberOfRooms">Numero di stanze</label>
+                  <input id="numberOfRooms" type="number" class="small-input" v-model="store.numberOfRooms">
+                </li>
+                <li>
+                  <label for="numberOfBeds">Numero di letti</label>
+                  <input id="numberOfBeds" type="number" class="small-input" v-model="store.numberOfBeds">
+                </li>
+                <li>
+                  <label for="numberOfBathrooms">Numero di bagni</label>
+                  <input id="numberOfBathrooms" type="number" class="small-input" v-model="store.numberOfBathrooms">
+                </li>
+                <li class="d-flex align-items-center" v-for="service in services" :key="service.id">
+                  <input type="checkbox" :id="'service-' + service.id" class="checkbox-input" v-model="store.selectedServices" :value="service.id">
+                  <label :for="'service-' + service.id" class="ms-2">{{ service.name }}</label>
+                </li>
+                 
+              </ul>
+           </form>
+           <button class="btn btn-primary mt-3" @click="$emit('advancedSearch')">Applica filtri</button>
+           <button class="btn btn-secondary mt-3 close-filter" @click="$emit('resetFilters')">Rest
+           filtri</button>
+        </div>
+     </div>
   </div>
-
 </template>
 
 <style lang="scss"></style>
