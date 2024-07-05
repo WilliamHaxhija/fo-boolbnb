@@ -24,25 +24,22 @@ export default {
     },
     mounted() {
         this.getSingleApartment()
+        console(log);
     }
 }
 </script>
 
 <template>
-    <div class="col d-flex justify-content-center g-3">
-        <!-- <div class="card" style="width: 18rem;">
-            <div v-if="apartment.image">
-                <img :src="printImage(apartment.image)" class="card-img-top"
-                :alt="apartment.slug">
-            </div>
-            <div class="card-body">
-                <h5 class="card-title">{{ apartment.title }}</h5>
-                <p class="card-text">{{ apartment.address }}</p>
-                <p class="card-text">Distanza: {{ Math.round(apartment.distance) }}km</p>
-                <p class="card-text">Descrizione: {{ apartment.description }}</p>
-            </div>
-        </div> -->
-    </div>
+    <section class="apartment">
+        <div class="container">
+            <ApartmentCard v-if="store.apartment" :key="store.apartment.id" :apartmentInfo="store.apartment">
+            </ApartmentCard>
+            <div v-else>Ciao</div>
+        </div>
+    </section>
+    <section class="map pt-4">
+        <AppMap :apartmentInfo="store.apartment"></AppMap>
+    </section>
 </template>
 
 <style scoped lang="scss"></style>
