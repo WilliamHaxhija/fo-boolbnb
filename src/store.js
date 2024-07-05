@@ -11,6 +11,7 @@ export const store = reactive({
     userSelection: null,
     suggestedAddresses: [],
     searchedApartments: [],
+    // parametro radius che viene passato alla funzione per la chiamata 
     radius: 20,
 
     // funzione che richiama tutti gli appartamenti

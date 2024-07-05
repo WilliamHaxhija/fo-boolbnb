@@ -35,6 +35,7 @@ export default {
             <div class="row" :class="$route.name === 'home' ? 'row-cols-1 row-cols-md-2' : ''">
                 <div class="col">
                     <AppFilter ></AppFilter>
+                    <!-- funzione getApartmentsFromApi presa dallo store -->
                     <AppSearch  @search="getSuggestionsAddressFromApi" @dbResults="store.getApartmentsFromApi">
                     </AppSearch>
                 </div>

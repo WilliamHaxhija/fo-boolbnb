@@ -49,6 +49,7 @@ export default {
               <label :for="'service-' + service.id" class="ms-2">{{ service.name }}</label>
             </li>
           </ul>
+          <!-- funzione getApartmentsFromApi presa dallo store -->
           <button class="btn btn-primary mt-3" @click="store.getApartmentsFromApi">Applica filtri</button>
         </div>
       </div>
