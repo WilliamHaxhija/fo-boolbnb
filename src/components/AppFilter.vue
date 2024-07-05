@@ -6,6 +6,7 @@ export default {
     data() {
         return {
             store,
+            radius:20,
             services: [],
             selectedServices: []
         };
@@ -50,7 +51,7 @@ export default {
             </li>
           </ul>
           <!-- funzione getApartmentsFromApi presa dallo store -->
-          <button class="btn btn-primary mt-3" @click="store.getApartmentsFromApi">Applica filtri</button>
+          <button class="btn btn-primary mt-3" @click="getApartmentsFromApi">Applica filtri</button>
         </div>
       </div>
     </div>

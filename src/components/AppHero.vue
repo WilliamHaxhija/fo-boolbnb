@@ -12,6 +12,7 @@ export default {
     data() {
         return {
             store,
+            radius: 20
           
         };
     },
@@ -25,6 +26,19 @@ export default {
                     });
             }
         },
+        getApartmentsFromApi() {
+        let apiApartmentsSearch = `${store.apiBaseUrl}/api/apartments`
+        axios.get(apiApartmentsSearch, {
+            params: {
+                latitude: store.userSelection.position.lat,
+                longitude: store.userSelection.position.lon,
+                radius: this.radius
+            }
+        })
+            .then((response) => {
+                store.searchedApartments = response.data.apartments;
+            });
+    }
     }
 }
 </script>
@@ -36,7 +50,7 @@ export default {
                 <div class="col">
                     <AppFilter ></AppFilter>
                     <!-- funzione getApartmentsFromApi presa dallo store -->
-                    <AppSearch  @search="getSuggestionsAddressFromApi" @dbResults="store.getApartmentsFromApi">
+                    <AppSearch  @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi">
                     </AppSearch>
                 </div>
                 <div v-if="$route.name === 'home'" class="col">
