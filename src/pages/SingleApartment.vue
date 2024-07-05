@@ -25,6 +25,7 @@ export default {
     },
     mounted() {
         this.getSingleApartment()
+        console(log);
     }
 }
 </script>
@@ -32,7 +33,8 @@ export default {
 <template>
     <section class="apartment">
         <div class="container">
-            <ApartmentCard v-if="store.apartment" :key="store.apartment.id" :apartmentInfo="store.apartment"></ApartmentCard>
+            <ApartmentCard v-if="store.apartment" :key="store.apartment.id" :apartmentInfo="store.apartment">
+            </ApartmentCard>
             <div v-else>Ciao</div>
         </div>
     </section>
