@@ -1,4 +1,5 @@
 import { reactive } from "vue";
+import axios from 'axios';
 
 export const store = reactive({
     tomTomQueryParams: {
@@ -9,5 +10,22 @@ export const store = reactive({
     userInputSearch: '',
     userSelection: null,
     suggestedAddresses: [],
-    searchedApartments: []
+    searchedApartments: [],
+    radius: 20,
+
+    // funzione che richiama tutti gli appartamenti
+    getApartmentsFromApi() {
+        let apiApartmentsSearch = `${store.apiBaseUrl}/api/apartments`
+        axios.get(apiApartmentsSearch, {
+            params: {
+                latitude: store.userSelection.position.lat,
+                longitude: store.userSelection.position.lon,
+                radius: store.radius
+            }
+        })
+            .then((response) => {
+                store.searchedApartments = response.data.apartments;
+            });
+    }
+    
 });

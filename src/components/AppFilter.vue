@@ -6,7 +6,6 @@ export default {
     data() {
         return {
             store,
-            radius: 20,
             services: [],
             selectedServices: []
         };
@@ -50,7 +49,7 @@ export default {
               <label :for="'service-' + service.id" class="ms-2">{{ service.name }}</label>
             </li>
           </ul>
-          <button class="btn btn-primary mt-3" @click="applyFilters">Applica filtri</button>
+          <button class="btn btn-primary mt-3" @click="store.getApartmentsFromApi">Applica filtri</button>
         </div>
       </div>
     </div>
