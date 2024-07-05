@@ -6,6 +6,7 @@ export const store = reactive({
         tomTomKey: import.meta.env.VITE_TOM_TOM_API_KEY,
         countrySet: 'ITA',
     },
+    apartment: null,
     apiBaseUrl: import.meta.env.VITE_API_URL,
     userInputSearch: '',
     userSelection: null,
@@ -15,6 +16,6 @@ export const store = reactive({
     numberOfRooms: 0,
     numberOfBeds: 0,
     numberOfBathrooms: 0,
-    userRadius:0,
-    selectSquareMeters:0
+    userRadius: 0,
+    selectSquareMeters: 0
 });

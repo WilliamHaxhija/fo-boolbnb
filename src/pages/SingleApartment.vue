@@ -1,25 +1,26 @@
 <script>
 import axios from 'axios';
 import { store } from '../store';
+import ApartmentCard from '../components/ApartmentCard.vue';
+import AppMap from '../components/AppMap.vue';
+
 export default {
     name: 'SingleApartment',
+    components: {
+        ApartmentCard,
+        AppMap
+    },
     data() {
         return {
-            store,
-            apartment: null
+            store
         }
     },
     methods: {
         getSingleApartment() {
             axios.get(`${store.apiBaseUrl}/api/apartments/${this.$route.params.slug}`)
                 .then((response) => {
-                    this.apartment = response.data.apartment;
-                    console.log(this.apartment);
+                    store.apartment = response.data.apartment;
                 });
-
-        },
-        printImage(imageUrl) {
-            return `${store.apiBaseUrl}/storage/${imageUrl}`;
         }
     },
     mounted() {

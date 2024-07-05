@@ -20,9 +20,9 @@ export default {
                 <!-- Collapsible wrapper -->
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Our Logo -->
-                    <router-link :to="{ name: 'home' }" class="navbar-brand mt-2 mt-lg-0">
+                    <a href="/" class="navbar-brand mt-2 mt-lg-0">
                         <img src="../assets/img/logo_bnb.png" height="70" alt="MDB Logo" loading="lazy" />
-                    </router-link>
+                    </a>
 
                 </div>
                 <!-- Collapsible wrapper -->

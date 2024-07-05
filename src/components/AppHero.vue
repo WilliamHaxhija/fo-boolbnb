@@ -13,8 +13,7 @@ export default {
     data() {
         return {
             store,
-            radius: 20,
-            i: ''
+            radius: 20
         };
     },
     methods: {
@@ -41,14 +40,12 @@ export default {
                 square_meters: store.selectSquareMeters
             };
 
-            
             if (store.userRadius !== 0) {
                 params.radius = store.userRadius;
             } else {
                 params.radius = this.radius; // Utilizza il valore di default 
             }
 
-           
             let apiApartmentsSearch = `${store.apiBaseUrl}/api/apartments`;
             axios.get(apiApartmentsSearch, { params })
                 .then((response) => {
@@ -75,8 +72,6 @@ export default {
                     <!-- image -->
                 </div>
             </div>
-
-
         </div>
     </section>
 </template>

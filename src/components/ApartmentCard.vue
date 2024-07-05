@@ -1,8 +1,12 @@
 <script>
 import { store } from '../store';
+import MessageForm from './MessageForm.vue';
 
 export default {
     name: 'ApartmentCard',
+    components: {
+        MessageForm
+    },
     props: {
         apartmentInfo: Object
     },
@@ -72,9 +76,6 @@ export default {
                     data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
                     aria-controls="offcanvasWithBothOptions">Contatta l'host</button>
                 <MessageForm></MessageForm>
-                <p class="card-text">Distanza: {{ Math.round(apartmentInfo.distance) }}km</p>
-                <p class="card-text">Bagni: {{ apartmentInfo.number_of_bathrooms }}</p>
-                <p class="card-text">Mq:{{ apartmentInfo.square_meters }}</p>
                 <!-- scorriamo l'array dei servizi e li stampiamo in pagina  -->
                 <p class="card-text">
                 <ul class="list-unstyled">
@@ -84,8 +85,6 @@ export default {
                     </li>
                 </ul>
                 </p>
-
-                <router-link :to="{ name: 'single-apartment', params: { slug: apartmentInfo.slug } }">Info</router-link>
             </div>
         </div>
     </div>
