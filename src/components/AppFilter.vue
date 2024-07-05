@@ -57,6 +57,10 @@ export default {
                   <input id="numberOfBathrooms" type="number" class="small-input" v-model="store.numberOfBathrooms">
                 </li>
                 <li>
+                  <label for="numberOfBathrooms">Mq</label>
+                  <input id="numberOfBathrooms" type="number" class="small-input" v-model="store.selectSquareMeters">
+                </li>
+                <li>
                   <label for="userRadius">Raggio di km</label>
                   <input id="userRadius" type="number" class="small-input" v-model="store.userRadius">
                 </li>

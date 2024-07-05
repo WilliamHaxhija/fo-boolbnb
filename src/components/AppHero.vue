@@ -37,6 +37,7 @@ export default {
                 number_of_rooms: store.numberOfRooms,
                 number_of_beds: store.numberOfBeds,
                 number_of_bathrooms: store.numberOfBathrooms,
+                square_meters: store.selectSquareMeters
             };
 
             

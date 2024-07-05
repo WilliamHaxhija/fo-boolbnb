@@ -55,6 +55,7 @@ export default {
                 <p class="card-text">{{ apartmentInfo.address }}</p>
                 <p class="card-text">Distanza: {{ Math.round(apartmentInfo.distance) }}km</p>
                 <p class="card-text">Bagni: {{ apartmentInfo.number_of_bathrooms }}</p>
+                <p class="card-text">Mq:{{apartmentInfo.square_meters}}</p>
                 <!-- scorriamo l'array dei servizi e li stampiamo in pagina  -->
                 <p class="card-text">
                     <ul class="list-unstyled">
