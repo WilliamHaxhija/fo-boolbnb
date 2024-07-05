@@ -25,7 +25,6 @@ export default {
     },
     mounted() {
         this.getSingleApartment()
-        console(log);
     }
 }
 </script>
@@ -35,7 +34,6 @@ export default {
         <div class="container">
             <ApartmentCard v-if="store.apartment" :key="store.apartment.id" :apartmentInfo="store.apartment">
             </ApartmentCard>
-            <div v-else>Ciao</div>
         </div>
     </section>
     <section class="map pt-4">

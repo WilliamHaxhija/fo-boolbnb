@@ -18,6 +18,7 @@ export default {
     methods: {
         printImage(imageUrl) {
             return `${store.apiBaseUrl}/storage/${imageUrl}`;
+            cosnso
         }
     }
 }
@@ -46,7 +47,9 @@ export default {
                     apartmentInfo.square_meters }}</p>
                 <router-link v-if="$route.name === 'results'"
                     :to="{ name: 'single-apartment', params: { slug: apartmentInfo.slug } }">Info</router-link>
-                <button v-if="$route.name === 'single-apartment'" class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">Contatta l'host</button>
+                <button v-if="$route.name === 'single-apartment'" class="btn btn-primary" type="button"
+                    data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+                    aria-controls="offcanvasWithBothOptions">Contatta l'host</button>
                 <MessageForm></MessageForm>
             </div>
         </div>

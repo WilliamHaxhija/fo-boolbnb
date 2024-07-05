@@ -10,7 +10,8 @@ export default {
     data() {
         return {
             store,
-            radius: 20
+            radius: 20,
+            i: ''
         };
     },
     methods: {
