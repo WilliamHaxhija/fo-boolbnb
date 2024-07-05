@@ -24,7 +24,7 @@ export default {
   methods: {
     async sendMessage() {
       try {
-        const response = await axios.post('http://localhost:8000/api/messages', {
+        const response = await axios.post(`${store.apiBaseUrl}/api/messages`, {
           name: this.name,
           email: this.email,
           text: this.text,
