@@ -89,12 +89,12 @@ export default {
     <section class="py-4 d-flex align-items-center" :class="$route.name === 'home' ? 'ms_hero' : ''">
         <div class="container">
             <div class="row" :class="$route.name === 'home' ? 'row-cols-1 row-cols-md-2' : ''">
-                <div class="col-6 py-5">
+                <div class="col-6 lg-col-12">
                     <!-- <AppFilter @advancedSearch="getApartmentsFromApi" @resetFilters="getApartmentsFromApi"></AppFilter> -->
                     <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi">
                     </AppSearch>
                 </div>
-                <div v-if="$route.name === 'home'" class="col-6">
+                <div v-if="$route.name === 'home'" class="col-6 md-col-12">
                     <div class="cities-container fs-1 fw-bolder d-flex align-items-center">
                         <div v-for="(city, index) in cities" :key="index"
                             :class="['city', { show: index === currentIndex, hide: index === previousIndex, next: index === nextIndex }]">
@@ -117,6 +117,7 @@ export default {
     background-repeat: no-repeat;
     background-image: url(../assets/img/image_hero.webp);
     background-position: center;
+
 }
 
 .cities-container {
