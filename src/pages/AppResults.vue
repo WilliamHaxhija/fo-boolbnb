@@ -18,12 +18,12 @@ export default {
 </script>
 
 <template>
-    <AppHero></AppHero>
+    <!-- Passa showFilter come true per mostrare AppFilter in AppHero -->
+    <AppHero :showFilter="true"></AppHero>
     <section>
         <div class="container">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
-                <ApartmentCard v-for="apartment in store.searchedApartments" :apartmentInfo="apartment"
-                    :key="apartment.id"></ApartmentCard>
+                <ApartmentCard v-for="apartment in store.searchedApartments" :apartmentInfo="apartment" :key="apartment.id"></ApartmentCard>
             </div>
         </div>
     </section>

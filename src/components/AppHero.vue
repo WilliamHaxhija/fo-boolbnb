@@ -1,9 +1,9 @@
 <script>
+// Importa le dipendenze necessarie
 import axios from 'axios';
 import { store } from '../store';
 import AppSearch from '../components/AppSearch.vue';
 import AppFilter from './AppFilter.vue';
-
 
 export default {
     name: 'AppHero',
@@ -11,21 +11,26 @@ export default {
         AppSearch,
         AppFilter
     },
+    props: {
+        // prop per mostrare il componente app filter 
+        showFilter: {
+            type: Boolean,
+            default: false // impostiamo di default false per non mostrarlo nella home
+        }
+    },
     data() {
         return {
             store,
             radius: 20,
-            // Città per il carosello
+            // Elenco delle città per il carosello
             cities: ['ROMA', 'LONDON', 'NEW YORK', 'TOKYO', 'PARIS', 'AMSTERDAM', 'PECHINO', 'MOSCA', 'MADRID'],
             currentIndex: 0,
             previousIndex: null,
             nextIndex: 1,
-            // Fine Città per il carosello
-
         };
     },
     methods: {
-        // Api per chiamata TomTom
+        // Funzione per ottenere suggerimenti di indirizzo dall'API TomTom
         getSuggestionsAddressFromApi() {
             let apiTomTomSearch = `https://api.tomtom.com/search/2/search/${store.userInputSearch}.json?countrySet=${store.tomTomQueryParams.countrySet}&key=${store.tomTomQueryParams.tomTomKey}`;
             if (store.userInputSearch !== '') {
@@ -38,7 +43,7 @@ export default {
                     });
             }
         },
-        // Api per chiamata degli appartamenti nel BO
+        // Funzione per ottenere appartamenti dall'API
         getApartmentsFromApi() {
             let params = {
                 latitude: store.userSelection.position.lat,
@@ -53,7 +58,7 @@ export default {
             if (store.userRadius !== 0) {
                 params.radius = store.userRadius;
             } else {
-                params.radius = this.radius; // Utilizza il valore di default 
+                params.radius = this.radius; // Utilizza il valore di default se non specificato
             }
 
             let apiApartmentsSearch = `${store.apiBaseUrl}/api/apartments`;
@@ -65,34 +70,32 @@ export default {
                     console.error('Errore nella richiesta API degli appartamenti:', error);
                 });
         },
-        // funzione per il tempo del carosello 
+        // Inizia il carosello delle città
         startCityScroll() {
             setInterval(this.showNextCity, 1500);
         },
-        // funzione per il carosello 
+        // Mostra la prossima città nel carosello
         showNextCity() {
             this.previousIndex = this.currentIndex;
             this.currentIndex = (this.currentIndex + 1) % this.cities.length;
             this.nextIndex = (this.currentIndex + 1) % this.cities.length;
         },
-
     },
     mounted() {
-        // Richiama all'avvio la funzione del carosello
+        // Avvia il carosello delle città al montaggio del componente
         this.startCityScroll();
     },
 }
 </script>
 
 <template>
-
-    <section class="py-4 d-flex align-items-center" :class="$route.name === 'home' ? 'ms_hero' : ''">
+    <section class="py-4 d-flex align-items-center " :class="$route.name === 'home' ? 'ms_hero' : ''">
         <div class="container">
             <div class="row" :class="$route.name === 'home' ? 'row-cols-1 row-cols-md-2' : ''">
                 <div class="col-6 lg-col-12">
-                    <!-- <AppFilter @advancedSearch="getApartmentsFromApi" @resetFilters="getApartmentsFromApi"></AppFilter> -->
-                    <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi">
-                    </AppSearch>
+                    <!-- Utilizza la prop showFilter per controllare la visibilità di AppFilter -->
+                    <AppFilter v-if="showFilter" @advancedSearch="getApartmentsFromApi" @resetFilters="getApartmentsFromApi"></AppFilter>
+                    <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi"></AppSearch>
                 </div>
                 <div v-if="$route.name === 'home'" class="col-6 md-col-12">
                     <div class="cities-container fs-1 fw-bolder d-flex align-items-center">
@@ -102,11 +105,9 @@ export default {
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-    
 </template>
 
 <style scoped lang="scss">
@@ -117,7 +118,6 @@ export default {
     background-repeat: no-repeat;
     background-image: url(../assets/img/image_hero.webp);
     background-position: center;
-
 }
 
 .cities-container {
