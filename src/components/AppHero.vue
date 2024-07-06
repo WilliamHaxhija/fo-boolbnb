@@ -89,12 +89,15 @@ export default {
 </script>
 
 <template>
-    <section class="py-4 d-flex align-items-center " :class="$route.name === 'home' ? 'ms_hero' : ''">
-        <div class="container">
+    <section class="py-4 d-flex align-items-center position-relative" :class="$route.name === 'home' ? 'ms_hero' : ''">
+        <!-- Overlay nero trasparente -->
+        <div class="overlay"></div>
+        <div class="container position-relative">
             <div class="row" :class="$route.name === 'home' ? 'md-display-block' : ''">
                 <div class="col-lg-6 col-12 order-2 order-lg-1">
                     <!-- Utilizza la prop showFilter per controllare la visibilità di AppFilter -->
-                    <AppFilter v-if="showFilter" @advancedSearch="getApartmentsFromApi" @resetFilters="getApartmentsFromApi"></AppFilter>
+                    <AppFilter v-if="showFilter" @advancedSearch="getApartmentsFromApi"
+                        @resetFilters="getApartmentsFromApi"></AppFilter>
                     <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi"></AppSearch>
                 </div>
                 <div v-if="$route.name === 'home'" class="col-lg-6 col-12 order-1 order-lg-2">
@@ -116,8 +119,25 @@ export default {
     min-height: 700px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(../assets/img/image_hero.webp);
+    background-image: url('../assets/img/image_hero.webp');
     background-position: center;
+    position: relative; /* Assicura che il posizionamento assoluto dell'overlay sia relativo a questa sezione */
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to top, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.059));
+        /* Cambia i valori di opacità e colori secondo necessità */
+        z-index: 1;
+    }
+
+    .container {
+        position: relative;
+        z-index: 2;
+    }
 }
 
 .cities-container {

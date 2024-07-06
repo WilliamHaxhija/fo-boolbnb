@@ -7,10 +7,10 @@ export default {
 <template>
     <header class="position-sticky top-0 z-1">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light p-1 rounded  ">
+        <nav class="navbar navbar-expand-lg navbar-light p-1 rounded">
             <!-- Container wrapper -->
             <div class="container d-flex flex-wrap aligne-items-center justify-content-between">
-                
+
                 <!-- Home Logo -->
                 <div>
                     <!-- Our Logo -->

@@ -24,7 +24,7 @@ export default {
         <div class="position-relative ms_search">
 
             <div class="inputGroup">
-                <input autocomplete="off" id="floatingInput" required="" type="text" v-model="store.userInputSearch"
+                <input class="text-white" autocomplete="off" id="floatingInput" required="" type="text" v-model="store.userInputSearch"
                     @keyup="$emit('search')">
                 <label for="name">Cerca destinazioni nel raggio di 20 km</label>
                 <template v-if="store.userInputSearch !== ''">
@@ -94,7 +94,7 @@ export default {
     margin-left: 0.5em;
     pointer-events: none;
     transition: all 0.3s ease;
-    color: rgb(70, 70, 70);
+    color: rgb(243, 243, 243);
 }
 
 .inputGroup :is(input:focus, input:valid)~label {
