@@ -28,7 +28,7 @@ export default {
                 <label for="name">Cerca destinazioni nel raggio di 20 km</label>
             </div>
 
-            <div class="search cursor-pointer position-absolute top-50 end-0 translate-middle">
+            <div class="search lens cursor-pointer position-absolute end-0 translate-middle">
                 <router-link :to="{ name: 'results' }" @click="$emit('dbResults')">
                     <svg width=" 24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">
@@ -58,6 +58,10 @@ export default {
 
     .ms_search_bar {
         height: 100%;
+    }
+
+    .lens{
+        top: 28px;
     }
 }
 
