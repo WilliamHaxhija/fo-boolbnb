@@ -52,19 +52,20 @@ export default {
 <template>
     <div class="ms_card rounded-4">
         <div v-if="apartmentInfo.image" class="ms_img_contain rounded-4">
-            <img :src="printImage(apartmentInfo.image)" class="ms_img"
-                :alt="apartmentInfo.slug">
+            <img :src="printImage(apartmentInfo.image)" class="ms_img" :alt="apartmentInfo.slug">
         </div>
         <div class="ms_img_contain rounded-4" v-else>
             <img class="ms_img" src="../assets/img/image_hero.webp" alt="">
         </div>
 
         <div class="card-body">
-            <h5 class="card-title">{{ apartmentInfo.title }}</h5>
-            <p class="card-text">{{ apartmentInfo.address }}</p>
-            <p v-if="$route.name === 'single-apartment'" class="card-text">{{ apartmentInfo.description }}</p>
-            <p v-if="$route.name === 'results'" class="card-text">A {{ Math.round(apartmentInfo.distance)
-                }} km dal punto cercato
+            <h5 class="card-title fw-semibold">{{ apartmentInfo.title }}</h5>
+            <p class="card-text text-body-tertiary">{{ apartmentInfo.address }}</p>
+            <p v-if="$route.name === 'single-apartment'" class="card-text text-body-tertiary fw-medium">{{
+                apartmentInfo.description }}</p>
+            <p v-if="$route.name === 'results'" class="card-text text-body-tertiary fw-medium">A {{
+                Math.round(apartmentInfo.distance)
+            }} km dal punto cercato
             </p>
             <p v-if="$route.name === 'single-apartment'" class="card-text">Numero di stanze: {{
                 apartmentInfo.number_of_rooms }}</p>
@@ -78,18 +79,25 @@ export default {
 
             <!-- scorriamo l'array dei servizi e li stampiamo in pagina  -->
             <p class="card-text">
-            <ul class="list-unstyled services-grid">
-                <li v-for="service in apartmentInfo.services" :key="service.id">
-                    <i :class="['fas', getServiceIcon(service.name)]"></i>
-
-                </li>
-            </ul>
+                <template v-if="apartmentInfo.services && apartmentInfo.services.length">
+                    <ul class="list-unstyled services-grid">
+                        <li v-for="service in apartmentInfo.services" :key="service.id">
+                            <i :class="['fas', getServiceIcon(service.name)]"></i>
+                        </li>
+                    </ul>
+                </template>
+                <template v-else>
+                    <div>
+                        Al momento nessun servizio disponibile
+                    </div>
+                </template>
             </p>
+
             <button class="button" v-if="$route.name === 'results'">
-                <router-link 
-                :to="{ name: 'single-apartment', params: { slug: apartmentInfo.slug } }" class="text">Info</router-link>
+                <router-link :to="{ name: 'single-apartment', params: { slug: apartmentInfo.slug } }"
+                    class="text">Info</router-link>
             </button>
-            
+
             <button v-if="$route.name === 'single-apartment'" class="btn btn-primary" type="button"
                 data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
                 aria-controls="offcanvasWithBothOptions">Contatta l'host</button>
@@ -148,8 +156,8 @@ export default {
         height: 290px;
         margin-top: 1rem;
         overflow: hidden;
-        
-        .ms_img{
+
+        .ms_img {
             object-fit: cover;
             height: 100%;
             max-width: 100%;
@@ -183,7 +191,7 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 10px 15px;
+    padding: 6px 30px;
     gap: 15px;
     background-color: #007ACC;
     outline: 3px #007ACC solid;
@@ -192,6 +200,7 @@ export default {
     border: none;
     cursor: pointer;
     transition: 400ms;
+
 }
 
 .button .text {
@@ -199,6 +208,7 @@ export default {
     font-weight: 700;
     font-size: 1em;
     transition: 400ms;
+    text-decoration: none;
 }
 
 
@@ -210,6 +220,4 @@ export default {
 .button:hover .text {
     color: #007ACC;
 }
-
-
 </style>
