@@ -4,12 +4,14 @@ import axios from 'axios';
 import { store } from '../store';
 import AppSearch from '../components/AppSearch.vue';
 import AppFilter from './AppFilter.vue';
+import AppSponsorships from './AppSponsorships.vue';
 
 export default {
     name: 'AppHero',
     components: {
         AppSearch,
-        AppFilter
+        AppFilter,
+        AppSponsorships
     },
     props: {
         // prop per mostrare il componente app filter 
@@ -111,6 +113,8 @@ export default {
             </div>
         </div>
     </section>
+    <!-- componente card sponsorizzazioni -->
+    <AppSponsorships></AppSponsorships>
 </template>
 
 <style scoped lang="scss">
