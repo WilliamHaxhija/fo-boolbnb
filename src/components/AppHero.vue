@@ -23,7 +23,7 @@ export default {
             store,
             radius: 20,
             // Elenco delle città per il carosello
-            cities: ['ROMA', 'LONDON', 'NEW YORK', 'TOKYO', 'PARIS', 'AMSTERDAM', 'PECHINO', 'MOSCA', 'MADRID'],
+            cities: ['ROMA', 'LONDON', 'NEW YORK', 'TOKYO', 'PARIS', 'PECHINO', 'MOSCA', 'MADRID'],
             currentIndex: 0,
             previousIndex: null,
             nextIndex: 1,
@@ -91,13 +91,13 @@ export default {
 <template>
     <section class="py-4 d-flex align-items-center " :class="$route.name === 'home' ? 'ms_hero' : ''">
         <div class="container">
-            <div class="row" :class="$route.name === 'home' ? 'row-cols-1 row-cols-md-2' : ''">
-                <div class="col-6 lg-col-12 py-5">
+            <div class="row" :class="$route.name === 'home' ? 'md-display-block' : ''">
+                <div class="col-lg-6 col-12 order-2 order-lg-1">
                     <!-- Utilizza la prop showFilter per controllare la visibilità di AppFilter -->
                     <AppFilter v-if="showFilter" @advancedSearch="getApartmentsFromApi" @resetFilters="getApartmentsFromApi"></AppFilter>
                     <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi"></AppSearch>
                 </div>
-                <div v-if="$route.name === 'home'" class="col-6 md-col-12">
+                <div v-if="$route.name === 'home'" class="col-lg-6 col-12 order-1 order-lg-2">
                     <div class="cities-container fs-1 fw-bolder d-flex align-items-center">
                         <div v-for="(city, index) in cities" :key="index"
                             :class="['city', { show: index === currentIndex, hide: index === previousIndex, next: index === nextIndex }]">
@@ -123,7 +123,7 @@ export default {
 .cities-container {
     position: relative;
     overflow: hidden;
-    height: 100%;
+    height: 100px;
     width: 100%;
     color: white;
 

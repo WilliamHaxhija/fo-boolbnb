@@ -28,7 +28,7 @@ export default {
                     @keyup="$emit('search')">
                 <label for="name">Cerca destinazioni nel raggio di 20 km</label>
                 <template v-if="store.userInputSearch !== ''">
-                    <ul class="list-group" style="max-height: 200px; overflow-y: auto;">
+                    <ul class="list-group">
                         <li v-for="suggestion in store.suggestedAddresses" class="list-group-item"
                             :key="suggestion.address.freeformAddress" @click="selectSuggestion(suggestion)">
                             {{ suggestion.address.freeformAddress }}
@@ -105,10 +105,17 @@ export default {
 }
 
 .inputGroup :is(input:focus, input:valid) {
-    border-color: rgb(150, 150, 200);
+    border-color: #0f6efd;
+    
+}
+.list-group{
+    max-height: 300px;
+    overflow-y: auto;
+
+    .list-group-item {
+    cursor: pointer;
+    }
 }
 
-.list-group-item {
-    cursor: pointer;
-}
+
 </style>
