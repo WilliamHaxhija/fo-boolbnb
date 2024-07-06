@@ -25,7 +25,7 @@ export default {
 
             <div class="inputGroup">
                 <input :class="[$route.name === 'results' ? 'text-dark' : 'text-white']" autocomplete="off" id="floatingInput"
-                    required="" type="text" v-model="store.userInputSearch" @keyup="$emit('search')">
+                    required="" type="search" v-model="store.userInputSearch" @keyup="$emit('search')">
                 <label :class="[$route.name === 'results' ? 'text-dark' : 'text-white']" for="name">Cerca destinazioni nel raggio di 20 km</label>
                 <template v-if="store.userInputSearch !== ''">
                     <ul class="list-group">

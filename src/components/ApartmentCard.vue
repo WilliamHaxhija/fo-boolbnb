@@ -50,7 +50,22 @@ export default {
 </script>
 
 <template>
-    <div class="col d-flex justify-content-center g-3">
+    <div class="ms_card">
+        <div>
+            <img v-if="apartmentInfo.image" :src="printImage(apartmentInfo.image)" class="card-img-top"
+                :alt="apartmentInfo.slug">
+
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">{{ apartmentInfo.title }}</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+                content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+        </div>
+    </div>
+
+
+    <!-- <div class="col d-flex justify-content-center g-3">
         <div class="card">
             <img v-if="apartmentInfo.image" :src="printImage(apartmentInfo.image)" class="card-img-top"
                 :alt="apartmentInfo.slug">
@@ -77,7 +92,7 @@ export default {
                     aria-controls="offcanvasWithBothOptions">Contatta l'host</button>
                 <MessageForm></MessageForm>
                 <!-- scorriamo l'array dei servizi e li stampiamo in pagina  -->
-                <p class="card-text">
+    <!-- <p class="card-text">
                 <ul class="list-unstyled">
                     <li v-for="service in apartmentInfo.services" :key="service.id">
                         <i :class="['fas', getServiceIcon(service.name)]"></i>
@@ -87,7 +102,7 @@ export default {
                 </p>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <style scoped lang="scss"></style>

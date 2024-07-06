@@ -1,6 +1,7 @@
 <script>
+
 export default {
-    name: 'AppSponsorships'
+    name: 'AppSponsorships',
 }
 </script>
 
@@ -12,6 +13,7 @@ export default {
             <!-- card -->
             <div class="mb-5">
                 <div class="card">
+                    
                     <div class="img-container">
                         <img src="../assets/img/images.jpeg" alt="">
                     </div>
@@ -25,16 +27,7 @@ export default {
             </div>
 
             <!-- card -->
-            <div class="card mb-5">
-                <div class="img-container">
-                    <img src="../assets/img/images.jpeg" alt="">
-                </div>
-                <div class="textBox">
-                    <p class="text head">Ethereum</p>
-                    <span>Cryptocurrency</span>
-                    <p class="text price">1.654,34€</p>
-                </div>
-            </div>
+           
 
 
         </div>
