@@ -24,9 +24,9 @@ export default {
         <div class="position-relative ms_search">
 
             <div class="inputGroup">
-                <input class="text-white" autocomplete="off" id="floatingInput" required="" type="text" v-model="store.userInputSearch"
-                    @keyup="$emit('search')">
-                <label for="name">Cerca destinazioni nel raggio di 20 km</label>
+                <input :class="[$route.name === 'results' ? 'text-dark' : 'text-white']" autocomplete="off" id="floatingInput"
+                    required="" type="text" v-model="store.userInputSearch" @keyup="$emit('search')">
+                <label :class="[$route.name === 'results' ? 'text-dark' : 'text-white']" for="name">Cerca destinazioni nel raggio di 20 km</label>
                 <template v-if="store.userInputSearch !== ''">
                     <ul class="list-group">
                         <li v-for="suggestion in store.suggestedAddresses" class="list-group-item"
@@ -106,16 +106,15 @@ export default {
 
 .inputGroup :is(input:focus, input:valid) {
     border-color: #0f6efd;
-    
+
 }
-.list-group{
+
+.list-group {
     max-height: 300px;
     overflow-y: auto;
 
     .list-group-item {
-    cursor: pointer;
+        cursor: pointer;
     }
 }
-
-
 </style>
