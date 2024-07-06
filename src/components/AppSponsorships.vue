@@ -7,30 +7,59 @@ export default {
 
 <template>
 
-    <section class="container mt-5">
+    <section class="ms-container mt-5">
         <h3 class="mb-5">Sponsorizzati</h3>
-        <div class="d-flex gap-3 flex-wrap">
-            <!-- card -->
-            <div class="mb-5">
-                <div class="card">
-                    
-                    <div class="img-container">
-                        <img src="../assets/img/images.jpeg" alt="">
-                    </div>
-                    <div class="textBox">
-                        <p class="text head">Ethereum</p>
-                        <span>Cryptocurrency</span>
-                        <p class="text price">1.654,34€</p>
-                    </div>
+
+        <!-- card -->
+        <div class="mb-5 d-flex flex-wrap justify-content-between gap-2">
+            <div class="card">
+                <div class="img-container">
+                    <img src="../assets/img/images.jpeg" alt="">
                 </div>
-                <button class="button"></button>
+                <div class="textBox">
+                    <p class="text head">Ethereum</p>
+                    <span>Cryptocurrency</span>
+                    <p class="text price">1.654,34€</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img-container">
+                    <img src="../assets/img/images.jpeg" alt="">
+                </div>
+                <div class="textBox">
+                    <p class="text head">Ethereum</p>
+                    <span>Cryptocurrency</span>
+                    <p class="text price">1.654,34€</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img-container">
+                    <img src="../assets/img/images.jpeg" alt="">
+                </div>
+                <div class="textBox">
+                    <p class="text head">Ethereum</p>
+                    <span>Cryptocurrency</span>
+                    <p class="text price">1.654,34€</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="img-container">
+                    <img src="../assets/img/images.jpeg" alt="">
+                </div>
+                <div class="textBox">
+                    <p class="text head">Ethereum</p>
+                    <span>Cryptocurrency</span>
+                    <p class="text price">1.654,34€</p>
+                </div>
             </div>
 
-            <!-- card -->
-           
-
-
         </div>
+
+        <!-- /card -->
+
+
+
+
 
 
     </section>
@@ -38,6 +67,10 @@ export default {
 </template>
 
 <style scoped lang="scss">
+.ms-container{
+    max-width: 1500px;
+    margin: 0 auto;
+}
 .card {
     width: 330px;
     height: 190px;
