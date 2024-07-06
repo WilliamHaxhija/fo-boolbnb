@@ -22,7 +22,7 @@ export default {
     <AppHero :showFilter="true"></AppHero>
     <section>
         <div class="container">
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4 justify-content-between gap-4">
                 <ApartmentCard v-for="apartment in store.searchedApartments" :apartmentInfo="apartment" :key="apartment.id"></ApartmentCard>
             </div>
         </div>
