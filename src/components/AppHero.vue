@@ -92,7 +92,7 @@ export default {
     <section class="py-4 d-flex align-items-center " :class="$route.name === 'home' ? 'ms_hero' : ''">
         <div class="container">
             <div class="row" :class="$route.name === 'home' ? 'row-cols-1 row-cols-md-2' : ''">
-                <div class="col-6 lg-col-12">
+                <div class="col-6 lg-col-12 py-5">
                     <!-- Utilizza la prop showFilter per controllare la visibilità di AppFilter -->
                     <AppFilter v-if="showFilter" @advancedSearch="getApartmentsFromApi" @resetFilters="getApartmentsFromApi"></AppFilter>
                     <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi"></AppSearch>
