@@ -11,7 +11,7 @@ export default {
         <h3 class="mb-5">Sponsorizzati</h3>
 
         <!-- card -->
-        <div class="mb-5 d-flex flex-wrap justify-content-between gap-2">
+        <div class="mb-5 d-flex flex-wrap justify-content-between gap-3">
             <div class="card">
                 <div class="img-container">
                     <img src="../assets/img/images.jpeg" alt="">
