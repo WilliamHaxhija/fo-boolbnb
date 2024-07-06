@@ -22,10 +22,19 @@ export default {
     <div class="">
 
         <div class="position-relative ms_search">
-            
+
             <div class="inputGroup">
-                <input autocomplete="off" id="floatingInput" required="" type="text" v-model="store.userInputSearch" @keyup="$emit('search')">
+                <input autocomplete="off" id="floatingInput" required="" type="text" v-model="store.userInputSearch"
+                    @keyup="$emit('search')">
                 <label for="name">Cerca destinazioni nel raggio di 20 km</label>
+                <template v-if="store.userInputSearch !== ''">
+                    <ul class="list-group" style="max-height: 200px; overflow-y: auto;">
+                        <li v-for="suggestion in store.suggestedAddresses" class="list-group-item"
+                            :key="suggestion.address.freeformAddress" @click="selectSuggestion(suggestion)">
+                            {{ suggestion.address.freeformAddress }}
+                        </li>
+                    </ul>
+                </template>
             </div>
 
             <div class="search lens cursor-pointer position-absolute end-0 translate-middle">
@@ -42,14 +51,7 @@ export default {
 
 
     </div>
-    <template v-if="store.userInputSearch !== ''">
-        <ul class="list-group">
-            <li v-for="suggestion in store.suggestedAddresses" class="list-group-item"
-                :key="suggestion.address.freeformAddress" @click="selectSuggestion(suggestion)">
-                {{
-                    suggestion.address.freeformAddress }}</li>
-        </ul>
-    </template>
+
 </template>
 
 <style scoped lang="scss">
@@ -60,50 +62,50 @@ export default {
         height: 100%;
     }
 
-    .lens{
+    .lens {
         top: 28px;
     }
 }
 
 .inputGroup {
-  font-family: 'Segoe UI', sans-serif;
-  margin: 1em 0 1em 0;
-  width: 100%;
-  position: relative;
+    font-family: 'Segoe UI', sans-serif;
+    margin: 1em 0 1em 0;
+    width: 100%;
+    position: relative;
 
 }
 
 .inputGroup input {
-  font-size: 100%;
-  padding: 0.8em;
-  outline: none;
-  border: 2px solid rgb(200, 200, 200);
-  background-color: transparent;
-  border-radius: 20px;
-  width: 100%;
+    font-size: 100%;
+    padding: 0.8em;
+    outline: none;
+    border: 2px solid rgb(200, 200, 200);
+    background-color: transparent;
+    border-radius: 20px;
+    width: 100%;
 }
 
 .inputGroup label {
-  font-size: 100%;
-  position: absolute;
-  top: -6px;
-  left: 0;
-  padding-top: 1.3em;
-  margin-left: 0.5em;
-  pointer-events: none;
-  transition: all 0.3s ease;
-  color: rgb(70, 70, 70);
+    font-size: 100%;
+    position: absolute;
+    top: -6px;
+    left: 0;
+    padding-top: 1.3em;
+    margin-left: 0.5em;
+    pointer-events: none;
+    transition: all 0.3s ease;
+    color: rgb(70, 70, 70);
 }
 
 .inputGroup :is(input:focus, input:valid)~label {
-  transform: translateY(-50%) scale(.9);
-  margin: 0em;
-  margin-left: 1.3em;
-  padding: 0.4em;
+    transform: translateY(-50%) scale(.9);
+    margin: 0em;
+    margin-left: 1.3em;
+    padding: 0.4em;
 }
 
 .inputGroup :is(input:focus, input:valid) {
-  border-color: rgb(150, 150, 200);
+    border-color: rgb(150, 150, 200);
 }
 
 .list-group-item {
