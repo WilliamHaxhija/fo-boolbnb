@@ -50,6 +50,7 @@ export default {
 </script>
 
 <template>
+
     <div class="ms_card rounded-4">
         <div v-if="apartmentInfo.image" class="ms_img_contain rounded-4">
             <img :src="printImage(apartmentInfo.image)" class="ms_img" :alt="apartmentInfo.slug">
