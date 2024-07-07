@@ -18,6 +18,17 @@ export default {
       }).catch(error => {
         console.error('Errore nel recupero dei servizi:', error);
       });
+    },
+    resetFilters() {
+      this.store.numberOfRooms = null;
+      this.store.numberOfBeds = null;
+      this.store.numberOfBathrooms = null;
+      this.store.selectSquareMeters = null;
+      this.store.userRadius = null;
+      this.store.selectedServices = [];
+    },
+    applyFilters() {
+      this.$emit('advancedSearch');
     }
   },
   mounted() {
@@ -28,12 +39,13 @@ export default {
 
 
 
+
 <template>
   <button class="btn btn-primary mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
     Filtra appartamenti
   </button>
   <div class="offcanvas offcanvas-start rounded-4 my-3" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
-    <div class="offcanvas-header bg-light">
+    <div class="offcanvas-header bg-primary">
       <h5 class="offcanvas-title" id="staticBackdropLabel">Filtra </h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
@@ -88,13 +100,14 @@ export default {
           </div>
         </div>
         <div class="d-grid gap-2">
-          <button type="button" class="btn btn-primary" @click="$emit('advancedSearch')">Applica filtri</button>
-          <button type="button" class="btn btn-secondary" @click="$emit('resetFilters')">Reset filtri</button>
+          <button type="button" class="btn btn-primary" @click="applyFilters">Applica filtri</button>
+          <button type="button" class="btn btn-secondary" @click="resetFilters">Reset filtri</button>
         </div>
       </form>
     </div>
   </div>
 </template>
+
 
 
 <style lang="scss">
