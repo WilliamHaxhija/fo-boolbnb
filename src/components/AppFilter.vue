@@ -11,7 +11,6 @@ export default {
     };
   },
   methods: {
-    // Funzione per recuperare i servizi dall'API con gestione degli errori
     getServicesFromApi() {
       let apiServicesUrl = `${store.apiBaseUrl}/api/services`;
       axios.get(apiServicesUrl).then(response => {
@@ -22,61 +21,83 @@ export default {
     }
   },
   mounted() {
-    // Richiamo della funzione per recuperare i servizi all'inizializzazione del componente
     this.getServicesFromApi();
   }
 };
 </script>
 
 
+
 <template>
-  <button class="btn btn-primary mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
-     aria-controls="staticBackdrop">
-  Filtra appartamenti
+  <button class="btn btn-primary mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+    Filtra appartamenti
   </button>
-  <div class="offcanvas offcanvas-start rounded-4 my-3" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
-     aria-labelledby="staticBackdropLabel">
-     <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="staticBackdropLabel">Ecco i nostri servizi</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-     </div>
-     <div class="offcanvas-body">
-        <div>
-           <form>
-              <ul>
-                <li>
-                  <label for="numberOfRooms">Numero di stanze</label>
-                  <input id="numberOfRooms" type="number" class="small-input" v-model="store.numberOfRooms">
-                </li>
-                <li>
-                  <label for="numberOfBeds">Numero di letti</label>
-                  <input id="numberOfBeds" type="number" class="small-input" v-model="store.numberOfBeds">
-                </li>
-                <li>
-                  <label for="numberOfBathrooms">Numero di bagni</label>
-                  <input id="numberOfBathrooms" type="number" class="small-input" v-model="store.numberOfBathrooms">
-                </li>
-                <li>
-                  <label for="numberOfBathrooms">Mq</label>
-                  <input id="numberOfBathrooms" type="number" class="small-input" v-model="store.selectSquareMeters">
-                </li>
-                <li>
-                  <label for="userRadius">Raggio di km</label>
-                  <input id="userRadius" type="number" class="small-input" v-model="store.userRadius">
-                </li>
-                <li class="d-flex align-items-center" v-for="service in services" :key="service.id">
-                  <input type="checkbox" :id="'service-' + service.id" class="checkbox-input" v-model="store.selectedServices" :value="service.id">
-                  <label :for="'service-' + service.id" class="ms-2">{{ service.name }}</label>
-                </li>
-                 
-              </ul>
-           </form>
-           <button class="btn btn-primary mt-3" @click="$emit('advancedSearch')">Applica filtri</button>
-           <button class="btn btn-secondary mt-3 close-filter" @click="$emit('resetFilters')">Rest
-           filtri</button>
+  <div class="offcanvas offcanvas-start rounded-4 my-3" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
+    <div class="offcanvas-header bg-light">
+      <h5 class="offcanvas-title" id="staticBackdropLabel">Filtra </h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-4">
+      <form class="bg-white p-3 rounded-4 shadow-sm">
+        <div class="mb-3">
+          <label class="form-label">Numero di stanze</label>
+          <div class="btn-group" role="group" aria-label="Numero di stanze">
+            <button type="button" class="btn btn-outline-primary" 
+                    v-for="n in 8" :key="'rooms-' + n" 
+                    :class="{'active': store.numberOfRooms === n}"
+                    @click="store.numberOfRooms = n">
+              {{ n }}
+            </button>
+          </div>
         </div>
-     </div>
+        <div class="mb-3">
+          <label class="form-label">Numero di letti</label>
+          <div class="btn-group" role="group" aria-label="Numero di letti">
+            <button type="button" class="btn btn-outline-primary" 
+                    v-for="n in 8" :key="'beds-' + n" 
+                    :class="{'active': store.numberOfBeds === n}"
+                    @click="store.numberOfBeds = n">
+              {{ n }}
+            </button>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Numero di bagni</label>
+          <div class="btn-group" role="group" aria-label="Numero di bagni">
+            <button type="button" class="btn btn-outline-primary" 
+                    v-for="n in 8" :key="'bathrooms-' + n" 
+                    :class="{'active': store.numberOfBathrooms === n}"
+                    @click="store.numberOfBathrooms = n">
+              {{ n }}
+            </button>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="squareMeters" class="form-label">Mq</label>
+          <input id="squareMeters" type="number" class="form-control" v-model="store.selectSquareMeters">
+        </div>
+        <div class="mb-3">
+          <label for="userRadius" class="form-label">Raggio di km</label>
+          <input id="userRadius" type="number" class="form-control" v-model="store.userRadius">
+        </div>
+        <div class="mb-3">
+          <p class="mb-1">Seleziona Servizi:</p>
+          <div v-for="service in services" :key="service.id" class="form-check">
+            <input type="checkbox" :id="'service-' + service.id" class="form-check-input" v-model="store.selectedServices" :value="service.id">
+            <label :for="'service-' + service.id" class="form-check-label">{{ service.name }}</label>
+          </div>
+        </div>
+        <div class="d-grid gap-2">
+          <button type="button" class="btn btn-primary" @click="$emit('advancedSearch')">Applica filtri</button>
+          <button type="button" class="btn btn-secondary" @click="$emit('resetFilters')">Reset filtri</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
-<style lang="scss"></style>
+
+<style lang="scss">
+
+
+</style>
