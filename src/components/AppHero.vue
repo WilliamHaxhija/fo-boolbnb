@@ -91,16 +91,19 @@ export default {
 </script>
 
 <template>
-    <section class="py-4 d-flex align-items-center position-relative" :class="$route.name === 'home' ? 'ms_hero' : ''">
+    <section class="py-4 d-flex align-items-center position-relative ms-radius" :class="$route.name === 'home' ? 'ms_hero' : ''">
         <!-- Overlay nero trasparente -->
-        <div class="overlay"></div>
+        <div class="overlay ms-radius"></div>
         <div class="container position-relative">
             <div class="row" :class="$route.name === 'home' ? 'md-display-block' : ''">
                 <div class="col-lg-6 col-12 order-2 order-lg-1 z-2">
                     <!-- Utilizza la prop showFilter per controllare la visibilità di AppFilter -->
                     <AppFilter v-if="showFilter" @advancedSearch="getApartmentsFromApi"
                         @resetFilters="getApartmentsFromApi"></AppFilter>
-                    <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi"></AppSearch>
+                        <div v-if="$route.name === 'home'">
+                            <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi"></AppSearch>
+                        </div>
+                    
                 </div>
                 <div v-if="$route.name === 'home'" class="col-lg-6 col-12 order-1 order-lg-2">
                     <div class="cities-container fs-1 fw-bolder d-flex align-items-center">
@@ -128,6 +131,7 @@ export default {
     background-image: url('../assets/img/image_hero.webp');
     background-position: center;
     position: relative;
+    box-shadow: 0px 11px 31px -10px #000000;
     /* Assicura che il posizionamento assoluto dell'overlay sia relativo a questa sezione */
 
     .overlay {
@@ -178,5 +182,11 @@ export default {
     .city.next {
         transform: translateY(50px);
     }
+}
+
+// UTILITYS
+.ms-radius{
+    border-radius: 0px 0px 0px 1700px;
+    
 }
 </style>

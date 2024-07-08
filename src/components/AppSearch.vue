@@ -26,7 +26,7 @@ export default {
             <div class="inputGroup">
                 <input :class="[$route.name === 'results' ? 'text-dark' : 'text-white']" autocomplete="off" id="floatingInput"
                     required="" type="search" v-model="store.userInputSearch" @keyup="$emit('search')">
-                <label :class="[$route.name === 'results' ? 'text-dark' : 'text-white']" for="name">Cerca destinazioni nel raggio di 20 km</label>
+                <label :class="[$route.name === 'results' ? 'd-none' : 'text-white']" for="name">Cerca destinazioni nel raggio di 20 km</label>
                 <template v-if="store.userInputSearch !== ''">
                     <ul class="list-group">
                         <li v-for="suggestion in store.suggestedAddresses" class="list-group-item"
@@ -57,6 +57,7 @@ export default {
 <style scoped lang="scss">
 .ms_search {
     height: 60px;
+   
 
     .ms_search_bar {
         height: 100%;

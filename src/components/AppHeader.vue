@@ -1,13 +1,21 @@
 <script>
+import axios from 'axios';
+import { store } from '../store';
+import AppSearch from '../components/AppSearch.vue';
+
 export default {
     name: 'AppHeader',
-    data() {
-        return {
-            scrolled: false
-        };
+
+    components: {
+        AppSearch,
     },
-    mounted() {
-        window.addEventListener('scroll', this.handleScroll);
+    data() {
+
+        return {
+            scrolled: false,
+            store,
+            radius: 20,
+        };
     },
     beforeDestroy() {
         window.removeEventListener('scroll', this.handleScroll);
@@ -15,25 +23,73 @@ export default {
     methods: {
         handleScroll() {
             this.scrolled = window.scrollY > 50;
-        }
-    }
+        },
+        // Funzione per ottenere suggerimenti di indirizzo dall'API TomTom
+        getSuggestionsAddressFromApi() {
+            let apiTomTomSearch = `https://api.tomtom.com/search/2/search/${store.userInputSearch}.json?countrySet=${store.tomTomQueryParams.countrySet}&key=${store.tomTomQueryParams.tomTomKey}`;
+            if (store.userInputSearch !== '') {
+                axios.get(apiTomTomSearch)
+                    .then((response) => {
+                        store.suggestedAddresses = response.data.results;
+                    })
+                    .catch((error) => {
+                        console.error('Errore nella ricerca suggerimenti:', error);
+                    });
+            }
+        },
+        // Funzione per ottenere appartamenti dall'API
+        getApartmentsFromApi() {
+            let params = {
+                latitude: store.userSelection.position.lat,
+                longitude: store.userSelection.position.lon,
+                services: store.selectedServices,
+                number_of_rooms: store.numberOfRooms,
+                number_of_beds: store.numberOfBeds,
+                number_of_bathrooms: store.numberOfBathrooms,
+                square_meters: store.selectSquareMeters
+            };
+
+            if (store.userRadius !== 0) {
+                params.radius = store.userRadius;
+            } else {
+                params.radius = this.radius; // Utilizza il valore di default se non specificato
+            }
+
+            let apiApartmentsSearch = `${store.apiBaseUrl}/api/apartments`;
+            axios.get(apiApartmentsSearch, { params })
+                .then((response) => {
+                    store.searchedApartments = response.data.apartments;
+                })
+                .catch((error) => {
+                    console.error('Errore nella richiesta API degli appartamenti:', error);
+                });
+        },
+    },
+    mounted() {
+        window.addEventListener('scroll', this.handleScroll);
+    },
 }
 </script>
 
 <template>
-    <header :class="{'header-transparent': !scrolled, 'header-white': scrolled}" class="position-sticky top-0 z-3">
+    <header :class="{ 'header-transparent': !scrolled, 'header-white': scrolled }" class="position-sticky top-0 z-3">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light p-1 rounded">
             <!-- Container wrapper -->
-            <div class="container d-flex flex-wrap align-items-center justify-content-between">
+            <div class="container align-items-center gap-4">
                 <!-- Home Logo -->
                 <div>
-                    <!-- Our Logo -->
                     <router-link :to="{ name: 'home' }" class="navbar-brand mt-2 mt-lg-0">
                         <img src="../assets/img/logo_bnb.png" height="70" alt="MDB Logo" loading="lazy" />
                     </router-link>
                 </div>
-                <!-- Right elements -->
+
+                <!-- componente searchbar -->
+                <div v-if="$route.name === 'results'" class="flex-grow-1">
+                    <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi"></AppSearch>
+                </div>
+
+                <!-- admin log -->
                 <div class="d-flex align-items-center dropdown">
                     <!--Drop down For Login -->
                     <div class="dropdown">
@@ -46,8 +102,10 @@ export default {
                             <span class="ms_BG"></span>
                         </button>
                         <ul class="dropdown-menu ms-bg-drop-down px-2">
-                            <li class=""><a class="text-white text-decoration-none" href="http://127.0.0.1:8000/login">Login</a></li>
-                            <li><a class="text-white text-decoration-none" href="http://127.0.0.1:8000/register">Registrati</a></li>
+                            <li class=""><a class="text-white text-decoration-none"
+                                    href="http://127.0.0.1:8000/login">Login</a></li>
+                            <li><a class="text-white text-decoration-none"
+                                    href="http://127.0.0.1:8000/register">Registrati</a></li>
                         </ul>
                     </div>
                 </div>
