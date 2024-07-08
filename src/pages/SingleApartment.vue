@@ -1,13 +1,13 @@
 <script>
 import axios from 'axios';
 import { store } from '../store';
-import ApartmentCard from '../components/ApartmentCard.vue';
+import ShowApartment from '../components/ShowApartment.vue';
 import AppMap from '../components/AppMap.vue';
 
 export default {
     name: 'SingleApartment',
     components: {
-        ApartmentCard,
+       ShowApartment,
         AppMap
     },
     data() {
@@ -30,19 +30,19 @@ export default {
 </script>
 
 <template>
-    <section class="container d-flex flex-wrap">
+    <section class="container d-flex flex-wrap flex-column">
         <!-- foto e descrizione -->
-        <div class="apartment col-12 col-lg-6 order-1 order-lg-1">
+        <div class="">
 
-            <ApartmentCard v-if="store.apartment" :key="store.apartment.id" :apartmentInfo="store.apartment">
-            </ApartmentCard>
+            <ShowApartment v-if="store.apartment" :key="store.apartment.id" :apartmentInfo="store.apartment">
+            </ShowApartment>
 
         </div>
          <!-- mappa -->
-        <div class="map pt-4 col-12 col-lg-6 order-2 order-lg-2">
+        <div class="map pt-4 ">
             <AppMap :apartmentInfo="store.apartment"></AppMap>
         </div>
     </section>
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss"></style>-

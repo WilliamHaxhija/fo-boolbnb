@@ -42,7 +42,7 @@ export default {
 
 <template>
     <div class="container d-flex justify-content-center">
-        <div class="card mb-5" style="width: 62.5rem;">
+        <div class="card mb-5">
             <div  id="map">
             </div>
         </div>
@@ -50,7 +50,11 @@ export default {
 </template>
 
 <style scoped lang="scss">
+.card{
+    width: 100%;
+}
 #map {
     height: 31.25rem;
+    
 }
 </style>
