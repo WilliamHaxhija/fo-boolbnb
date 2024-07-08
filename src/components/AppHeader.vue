@@ -1,29 +1,40 @@
 <script>
 export default {
-    name: 'AppHeader'
+    name: 'AppHeader',
+    data() {
+        return {
+            scrolled: false
+        };
+    },
+    mounted() {
+        window.addEventListener('scroll', this.handleScroll);
+    },
+    beforeDestroy() {
+        window.removeEventListener('scroll', this.handleScroll);
+    },
+    methods: {
+        handleScroll() {
+            this.scrolled = window.scrollY > 20;
+        }
+    }
 }
 </script>
 
 <template>
-    <header class="position-sticky top-0 z-1">
+    <header :class="{'header-transparent': !scrolled, 'header-white': scrolled}" class="position-sticky top-0 z-1">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light p-1 rounded">
             <!-- Container wrapper -->
-            <div class="container d-flex flex-wrap aligne-items-center justify-content-between">
-
+            <div class="container d-flex flex-wrap align-items-center justify-content-between">
                 <!-- Home Logo -->
                 <div>
                     <!-- Our Logo -->
                     <router-link :to="{ name: 'home' }" class="navbar-brand mt-2 mt-lg-0">
                         <img src="../assets/img/logo_bnb.png" height="70" alt="MDB Logo" loading="lazy" />
                     </router-link>
-
                 </div>
-                <!-- Collapsible wrapper -->
-
                 <!-- Right elements -->
-                <div class="d-flex align-items-center dropdown ">
-
+                <div class="d-flex align-items-center dropdown">
                     <!--Drop down For Login -->
                     <div class="dropdown">
                         <button class="ms_Btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,22 +46,27 @@ export default {
                             <span class="ms_BG"></span>
                         </button>
                         <ul class="dropdown-menu ms-bg-drop-down px-2">
-                            <li class=""><a class="text-white text-decoration-none"
-                                    href="http://127.0.0.1:8000/login">Login</a></li>
-                            <li><a class="text-white text-decoration-none"
-                                    href="http://127.0.0.1:8000/register">Registrati</a>
-                            </li>
+                            <li class=""><a class="text-white text-decoration-none" href="http://127.0.0.1:8000/login">Login</a></li>
+                            <li><a class="text-white text-decoration-none" href="http://127.0.0.1:8000/register">Registrati</a></li>
                         </ul>
                     </div>
                 </div>
-                <!-- Right elements -->
             </div>
         </nav>
-        <!-- Navbar -->
     </header>
 </template>
 
 <style scoped lang="scss">
+.header-transparent {
+    background-color: transparent;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.header-white {
+    background-color: white;
+    transition: background-color 0.2s ease-in-out;
+}
+
 .ms_Btn {
     width: 45px;
     height: 45px;
@@ -61,7 +77,6 @@ export default {
     background-color: transparent;
     position: relative;
     z-index: 1;
-    /* overflow: hidden; */
     border-radius: 7px;
     cursor: pointer;
     transition: all .3s;

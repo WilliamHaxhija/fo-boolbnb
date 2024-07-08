@@ -30,16 +30,16 @@ export default {
 </script>
 
 <template>
-    <section class="container d-flex">
+    <section class="container d-flex flex-wrap">
         <!-- foto e descrizione -->
-        <div class="apartment col-6">
+        <div class="apartment col-12 col-lg-6 order-1 order-lg-1">
 
             <ApartmentCard v-if="store.apartment" :key="store.apartment.id" :apartmentInfo="store.apartment">
             </ApartmentCard>
 
         </div>
          <!-- mappa -->
-        <div class="map pt-4 col-6">
+        <div class="map pt-4 col-12 col-lg-6 order-2 order-lg-2">
             <AppMap :apartmentInfo="store.apartment"></AppMap>
         </div>
     </section>
