@@ -92,7 +92,6 @@ export default {
     top: -6px;
     left: 0;
     padding-top: 1.3em;
-    margin-left: 0.5em;
     pointer-events: none;
     transition: all 0.3s ease;
     color: rgb(243, 243, 243);
@@ -101,7 +100,6 @@ export default {
 .inputGroup :is(input:focus, input:valid)~label {
     transform: translateY(-50%) scale(.9);
     margin: 0em;
-    margin-left: 1.3em;
     padding: 0.4em;
 }
 

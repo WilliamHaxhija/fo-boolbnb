@@ -75,47 +75,55 @@ export default {
 
 <template>
     <header :class="{ 'header-transparent': !scrolled, 'header-white': scrolled }" class="position-sticky top-0 z-3">
-        <!-- Navbar -->
-        <nav class="navbar  navbar-light p-1 rounded" :class="z-3">
-            <!-- Container wrapper -->
-            <div class="container align-items-center gap-4">
-                <!-- Home Logo -->
-                <div class="sm-d-none">
-                    <router-link :to="{ name: 'home' }" class="navbar-brand s mt-lg-0">
-                        <img src="../assets/img/logo_bnb.png" height="70" alt="MDB Logo" loading="lazy" />
-                    </router-link>
-                    <AppFilter v-if="$route.name === 'results'" @advancedSearch="getApartmentsFromApi"></AppFilter>
+       <!-- Navbar -->
+       <nav class="navbar  navbar-light p-1 rounded" :class="z-3">
+          <!-- Container wrapper -->
+          <div class="container align-items-center gap-4">
+             <!-- Home Logo -->
+             <div class="mt-3 d-none d-md-block">
+                <router-link :to="{ name: 'home' }" class="navbar-brand s mt-lg-0">
+                   <img src="../assets/img/logo_bnb.png" height="70" alt="MDB Logo" loading="lazy" />
+                </router-link>
+             </div>
+             <!-- Logo per mobile quando siamo nella home-->
+             <div v-if="$route.name === 'home'" class="mt-3 d-block d-md-none">
+                <router-link :to="{ name: 'home' }" class="navbar-brand s mt-lg-0">
+                   <img src="../assets/img/logo_bnb.png" height="70" alt="MDB Logo" loading="lazy" />
+                </router-link>
+             </div>
+             <!-- Freccia indietro per mobile quando siamo in altre rotte -->
+             <router-link v-else :to="{ name: 'home' }" class="navbar-brand s mt-lg-0">
+                <h5 class="text-small d-block d-md-none text-black"><i class="fa-solid fa-arrow-left"></i></h5>
+             </router-link>
+             <!-- componente searchbar -->
+             <div v-if="$route.name === 'results'" class="flex-grow-1">
+                <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi"></AppSearch>
+             </div>
+             <!-- admin log -->
+             <div class="d-flex align-items-center dropdown ">
+                <AppFilter  v-if="$route.name === 'results'" @advancedSearch="getApartmentsFromApi"></AppFilter>
+                <!--Drop down For Login -->
+                <div class="dropdown d-flex">
+                   <button class="ms_Btn mx-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <span class="ms_svgContainer">
+                         <div fill="white" height="1.6em">
+                            <i class="fa-solid fa-user text-white"></i>
+                         </div>
+                      </span>
+                      <span class="ms_BG"></span>
+                   </button>
+                   <ul class="dropdown-menu ms-bg-drop-down px-2">
+                      <li class=""><a class="text-white text-decoration-none"
+                         href="http://127.0.0.1:8000/login">Login</a></li>
+                      <li><a class="text-white text-decoration-none"
+                         href="http://127.0.0.1:8000/register">Registrati</a></li>
+                   </ul>
                 </div>
-
-                <!-- componente searchbar -->
-                <div v-if="$route.name === 'results'" class="flex-grow-1">
-                    <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi"></AppSearch>
-                </div>
-
-                <!-- admin log -->
-                <div class="d-flex align-items-center dropdown">
-                    <!--Drop down For Login -->
-                    <div class="dropdown">
-                        <button class="ms_Btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            <span class="ms_svgContainer">
-                                <div fill="white" height="1.6em">
-                                    <i class="fa-solid fa-user text-white"></i>
-                                </div>
-                            </span>
-                            <span class="ms_BG"></span>
-                        </button>
-                        <ul class="dropdown-menu ms-bg-drop-down px-2">
-                            <li class=""><a class="text-white text-decoration-none"
-                                    href="http://127.0.0.1:8000/login">Login</a></li>
-                            <li><a class="text-white text-decoration-none"
-                                    href="http://127.0.0.1:8000/register">Registrati</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </nav>
+             </div>
+          </div>
+       </nav>
     </header>
-</template>
+ </template>
 
 <style scoped lang="scss">
 .header-transparent {
@@ -182,5 +190,30 @@ export default {
 
 .ms-bg-drop-down {
     background: #0b1537;
+}
+
+@media (max-width: 767px) {
+  .navbar .container {
+    flex-wrap: wrap;
+  }
+  .navbar-brand {
+    margin-right: auto;
+    margin-left: 0;
+  }
+  .navbar-toggler {
+    display: block;
+  }
+  .navbar-collapse {
+    background-color: white; /* Imposta il colore di sfondo del menu a bianco */
+    position: absolute; /* Posiziona il menu sopra il contenuto */
+    top: 100%; /* Posiziona il menu sotto la barra di navigazione */
+    width: 100%; /* Occupa l'intera larghezza */
+    left: 0; /* Allinea a sinistra */
+    box-shadow: 0px 11px 31px -10px #000000; /* Aggiunge ombra */
+    z-index: 1000; /* Assicura che il menu sia sopra gli altri contenuti */
+  }
+  .navbar-collapse .navbar-nav {
+    flex-direction: column; /* Imposta la direzione della flessione a colonna */
+  }
 }
 </style>

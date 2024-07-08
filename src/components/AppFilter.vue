@@ -41,9 +41,16 @@ export default {
 
 
 <template>
-  <button class="btn btn-primary mb-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-    Filtri
-  </button>
+  <!-- Bottone per dispositivi mobili -->
+<button class="btn btn-transparent d-block d-md-none p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+  <i class="fa-solid fa-gear"></i>
+</button>
+
+<!-- Bottone per desktop e tablet -->
+<button class="btn btn-primary d-none d-md-block p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+  Filtri
+</button>
+
   <div class="offcanvas offcanvas-start rounded-4 my-3" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="staticBackdropLabel">Filtra</h5>
@@ -124,9 +131,18 @@ export default {
 </template>
 
 
-
-
 <style lang="scss">
+.btn-transparent {
+  background-color: transparent; /* Sfondo trasparente */
+  border-color: transparent; /* Bordo trasparente */
+  color: inherit; /* Colore del testo ereditato */
+}
+
+.btn-transparent:hover {
+  background-color: rgba(0, 123, 255, 0.1); /* Colore di sfondo al passaggio del mouse */
+  border-color: rgba(0, 123, 255, 0.1); /* Colore del bordo al passaggio del mouse */
+}
 
 
 </style>
+
