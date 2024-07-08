@@ -1,4 +1,5 @@
 <script>
+// Importa le dipendenze necessarie
 import axios from 'axios';
 import { store } from '../store';
 import AppSearch from '../components/AppSearch.vue';
@@ -13,46 +14,25 @@ export default {
         AppSponsorships
     },
     props: {
+        // prop per mostrare il componente app filter 
         showFilter: {
             type: Boolean,
-            default: false
+            default: false // impostiamo di default false per non mostrarlo nella home
         }
     },
     data() {
         return {
             store,
             radius: 20,
+            // Elenco delle città per il carosello
             cities: ['ROMA', 'LONDON', 'NEW YORK', 'TOKYO', 'PARIS', 'PECHINO', 'MOSCA', 'MADRID'],
             currentIndex: 0,
             previousIndex: null,
             nextIndex: 1,
-            windowWidth: window.innerWidth
         };
     },
-    computed: {
-        sectionClasses() {
-            return {
-                'ms-radius': this.windowWidth >= 992,
-                'rounded-0': this.windowWidth < 992
-            };
-        },
-        overlayClasses() {
-            return {
-                'ms-radius': this.windowWidth >= 992
-            };
-        }
-    },
-    mounted() {
-        window.addEventListener('resize', this.handleResize);
-        this.startCityScroll();
-    },
-    beforeDestroy() {
-        window.removeEventListener('resize', this.handleResize);
-    },
     methods: {
-        handleResize() {
-            this.windowWidth = window.innerWidth;
-        },
+        // Funzione per ottenere suggerimenti di indirizzo dall'API TomTom
         getSuggestionsAddressFromApi() {
             let apiTomTomSearch = `https://api.tomtom.com/search/2/search/${store.userInputSearch}.json?countrySet=${store.tomTomQueryParams.countrySet}&key=${store.tomTomQueryParams.tomTomKey}`;
             if (store.userInputSearch !== '') {
@@ -65,6 +45,7 @@ export default {
                     });
             }
         },
+        // Funzione per ottenere appartamenti dall'API
         getApartmentsFromApi() {
             let params = {
                 latitude: store.userSelection.position.lat,
@@ -79,7 +60,7 @@ export default {
             if (store.userRadius !== 0) {
                 params.radius = store.userRadius;
             } else {
-                params.radius = this.radius;
+                params.radius = this.radius; // Utilizza il valore di default se non specificato
             }
 
             let apiApartmentsSearch = `${store.apiBaseUrl}/api/apartments`;
@@ -91,31 +72,38 @@ export default {
                     console.error('Errore nella richiesta API degli appartamenti:', error);
                 });
         },
+        // Inizia il carosello delle città
         startCityScroll() {
             setInterval(this.showNextCity, 1500);
         },
+        // Mostra la prossima città nel carosello
         showNextCity() {
             this.previousIndex = this.currentIndex;
             this.currentIndex = (this.currentIndex + 1) % this.cities.length;
             this.nextIndex = (this.currentIndex + 1) % this.cities.length;
         },
-    }
+    },
+    mounted() {
+        // Avvia il carosello delle città al montaggio del componente
+        this.startCityScroll();
+    },
 }
 </script>
 
 <template>
-    <section :class="sectionClasses" class="py-4 d-flex align-items-center position-relative ms_hero">
+    <section class="py-4 d-flex align-items-center position-relative ms-radius" :class="$route.name === 'home' ? 'ms_hero' : ''">
         <!-- Overlay nero trasparente -->
-        <div :class="overlayClasses" class="overlay"></div>
+        <div class="overlay ms-radius"></div>
         <div class="container position-relative">
             <div class="row" :class="$route.name === 'home' ? 'md-display-block' : ''">
                 <div class="col-lg-6 col-12 order-2 order-lg-1">
                     <!-- Utilizza la prop showFilter per controllare la visibilità di AppFilter -->
                     <AppFilter v-if="showFilter" @advancedSearch="getApartmentsFromApi"
                         @resetFilters="getApartmentsFromApi"></AppFilter>
-                    <div v-if="$route.name === 'home'">
-                        <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi"></AppSearch>
-                    </div>
+                        <div v-if="$route.name === 'home'">
+                            <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi"></AppSearch>
+                        </div>
+                    
                 </div>
                 <div v-if="$route.name === 'home'" class="col-lg-6 col-12 order-1 order-lg-2">
                     <div class="cities-container fs-1 fw-bolder d-flex align-items-center">
@@ -144,6 +132,8 @@ export default {
     background-position: center;
     position: relative;
     box-shadow: 0px 11px 31px -10px #000000;
+    /* Assicura che il posizionamento assoluto dell'overlay sia relativo a questa sezione */
+
     .overlay {
         position: absolute;
         top: 0;
@@ -151,7 +141,10 @@ export default {
         width: 100%;
         height: 100%;
         background: linear-gradient(to top, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.059));
+        /* Cambia i valori di opacità e colori secondo necessità */
+        z-index: 1;
     }
+
     .container {
         position: relative;
         z-index: 2;
@@ -164,6 +157,7 @@ export default {
     height: 100px;
     width: 100%;
     color: white;
+
     .city {
         position: absolute;
         width: 100%;
@@ -174,24 +168,25 @@ export default {
         transition: all 0.5s ease;
         font-size: 80px;
     }
+
     .city.show {
         opacity: 1;
         transform: translateY(0);
     }
+
     .city.hide {
         opacity: 0;
         transform: translateY(-50px);
     }
+
     .city.next {
         transform: translateY(50px);
     }
 }
 
-.ms-radius {
+// UTILITYS
+.ms-radius{
     border-radius: 0px 0px 0px 1700px;
-}
-
-.rounded-0 {
-    border-radius: 0 !important;
+    
 }
 </style>
