@@ -39,10 +39,13 @@ export default {
 
         </div>
          <!-- mappa -->
-        <div class="map pt-4 ">
+          
+        <div class="pt-4">
             <AppMap :apartmentInfo="store.apartment"></AppMap>
         </div>
     </section>
 </template>
 
-<style scoped lang="scss"></style>-
+<style scoped lang="scss">
+
+</style>-

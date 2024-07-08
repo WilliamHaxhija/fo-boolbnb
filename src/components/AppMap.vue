@@ -55,6 +55,7 @@ export default {
 }
 #map {
     height: 31.25rem;
+    z-index: 0;
     
 }
 </style>
