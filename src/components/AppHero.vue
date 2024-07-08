@@ -96,7 +96,7 @@ export default {
         <div class="overlay ms-radius"></div>
         <div class="container position-relative">
             <div class="row" :class="$route.name === 'home' ? 'md-display-block' : ''">
-                <div class="col-lg-6 col-12 order-2 order-lg-1 z-2">
+                <div class="col-lg-6 col-12 order-2 order-lg-1">
                     <!-- Utilizza la prop showFilter per controllare la visibilità di AppFilter -->
                     <AppFilter v-if="showFilter" @advancedSearch="getApartmentsFromApi"
                         @resetFilters="getApartmentsFromApi"></AppFilter>
