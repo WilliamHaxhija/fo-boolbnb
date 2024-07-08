@@ -78,7 +78,7 @@ export default {
             <!-- Container wrapper -->
             <div class="container align-items-center gap-4">
                 <!-- Home Logo -->
-                <div>
+                <div class="sm-d-none">
                     <router-link :to="{ name: 'home' }" class="navbar-brand mt-2 mt-lg-0">
                         <img src="../assets/img/logo_bnb.png" height="70" alt="MDB Logo" loading="lazy" />
                     </router-link>
