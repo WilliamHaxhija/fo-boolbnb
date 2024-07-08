@@ -45,7 +45,7 @@ export default {
     Filtra appartamenti
   </button>
   <div class="offcanvas offcanvas-start rounded-4 my-3" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
-    <div class="offcanvas-header bg-primary">
+    <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="staticBackdropLabel">Filtra </h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>

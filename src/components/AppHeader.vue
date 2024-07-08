@@ -14,14 +14,14 @@ export default {
     },
     methods: {
         handleScroll() {
-            this.scrolled = window.scrollY > 20;
+            this.scrolled = window.scrollY > 50;
         }
     }
 }
 </script>
 
 <template>
-    <header :class="{'header-transparent': !scrolled, 'header-white': scrolled}" class="position-sticky top-0 z-1">
+    <header :class="{'header-transparent': !scrolled, 'header-white': scrolled}" class="position-sticky top-0 z-3">
         <!-- Navbar -->
         <nav class="navbar navbar-expand-lg navbar-light p-1 rounded">
             <!-- Container wrapper -->
@@ -59,12 +59,14 @@ export default {
 <style scoped lang="scss">
 .header-transparent {
     background-color: transparent;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    box-shadow: none; /* Assicurati che non ci sia ombra in stato trasparente */
 }
 
 .header-white {
     background-color: white;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    box-shadow: 0px 11px 31px -10px #000000;
 }
 
 .ms_Btn {
