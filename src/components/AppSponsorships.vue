@@ -7,12 +7,13 @@ export default {
 
 <template>
 
-    <section class="my-5 bg-info bg-opacity-25">
+    <section class="my-5">
         <div class="container py-4">
-            <h3 class="mb-5 text-center">Sponsorizzati</h3>
+            
 
             <!-- card -->
-            <div class="bg-info bg-opacity-50 rounded-4 p-3">
+            <div class="ms-bg-sponsor rounded-4 p-3">
+                <h3 class="mb-5 text-center fw-bolder text-white">Sponsorizzati</h3>
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     <div class="col d-flex justify-content-center justify-content-sm-start">
                         <div class="card">
@@ -162,6 +163,10 @@ export default {
     100% {
         transform: translateY(0);
     }
+}
+
+.ms-bg-sponsor {
+    background-color: #4d93ad;
 }
 
 // BUTTON
