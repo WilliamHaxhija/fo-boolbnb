@@ -96,7 +96,7 @@ export default {
         <div class="overlay"></div>
         <div class="container position-relative">
             <div class="row" :class="$route.name === 'home' ? 'md-display-block' : ''">
-                <div class="col-lg-6 col-12 order-2 order-lg-1 z-3">
+                <div class="col-lg-6 col-12 order-2 order-lg-1 z-2">
                     <!-- Utilizza la prop showFilter per controllare la visibilità di AppFilter -->
                     <AppFilter v-if="showFilter" @advancedSearch="getApartmentsFromApi"
                         @resetFilters="getApartmentsFromApi"></AppFilter>
@@ -114,7 +114,9 @@ export default {
         </div>
     </section>
     <!-- componente card sponsorizzazioni -->
-    <AppSponsorships></AppSponsorships>
+    <div v-if="$route.name === 'home'">
+        <AppSponsorships></AppSponsorships>
+    </div>
 </template>
 
 <style scoped lang="scss">
@@ -125,7 +127,8 @@ export default {
     background-repeat: no-repeat;
     background-image: url('../assets/img/image_hero.webp');
     background-position: center;
-    position: relative; /* Assicura che il posizionamento assoluto dell'overlay sia relativo a questa sezione */
+    position: relative;
+    /* Assicura che il posizionamento assoluto dell'overlay sia relativo a questa sezione */
 
     .overlay {
         position: absolute;

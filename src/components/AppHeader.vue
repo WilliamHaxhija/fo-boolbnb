@@ -60,7 +60,7 @@ export default {
 .header-transparent {
     background-color: transparent;
     transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
-    box-shadow: none; /* Assicurati che non ci sia ombra in stato trasparente */
+    box-shadow: none;
 }
 
 .header-white {

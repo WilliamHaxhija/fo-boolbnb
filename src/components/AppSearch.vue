@@ -19,7 +19,7 @@ export default {
 </script>
 
 <template>
-    <div class="">
+    <div>
 
         <div class="position-relative ms_search">
 
