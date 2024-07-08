@@ -9,18 +9,11 @@ export default {
       name: '',
       email: '',
       text: '',
-      store
+      store,
+      messageSent: false, // Aggiungiamo una variabile per gestire lo stato dell'invio del messaggio
+      errorMessage: '', // Aggiungiamo una variabile per gestire eventuali errori
     };
   },
-  //   mounted() {
-  //     // Simulazione di autocompletamento dell'email se l'utente è registrato
-  //     const isRegisteredUser = true; // Simula che l'utente è registrato
-  //     const registeredEmail = 'utente@esempio.com'; // Email dell'utente registrato
-
-  //     if (isRegisteredUser) {
-  //       this.email = registeredEmail;
-  //     }
-  //   },
   methods: {
     async sendMessage() {
       try {
@@ -31,18 +24,26 @@ export default {
           apartment_id: store.apartment.id
         });
         if (response.data.success) {
-          alert('Messaggio inviato con successo!');
+          this.messageSent = true; // Imposta lo stato a true per mostrare il messaggio di successo
+          this.name = ''; // Pulisce i campi dopo l'invio del messaggio
+          this.email = '';
+          this.text = '';
+          // Puoi aggiornare lo store o fare altre azioni necessarie qui
         } else {
-          alert('Errore durante l\'invio del messaggio.');
+          this.errorMessage = 'Errore durante l\'invio del messaggio.';
         }
       } catch (error) {
         console.error('Errore:', error);
-        alert('Si è verificato un errore durante l\'invio del messaggio.');
+        this.errorMessage = 'Si è verificato un errore durante l\'invio del messaggio.';
       }
+    },
+    closeFlashMessage() {
+      this.messageSent = false; // Nasconde il messaggio di successo
     }
   }
 };
 </script>
+
 
 <template>
   <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
@@ -52,7 +53,13 @@ export default {
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <p>Qui puoi contattare il proprietario dell'appartamento e chiedere informazioni in merito.</p>
+      <!-- messaggio invianto con successo -->
+      <div v-if="messageSent" class="alert alert-success alert-dismissible fade show" role="alert">
+        Messaggio inviato con successo!
+        <button type="button" class="btn-close" @click="closeFlashMessage" aria-label="Close"></button>
+      </div>
+
+      <p>Inserisci tutti i campi</p>
       <form @submit.prevent="sendMessage">
         <div class="mb-3">
           <label for="name" class="form-label">Nome e Cognome</label>
@@ -74,4 +81,5 @@ export default {
     </div>
   </div>
 </template>
+
 <style scoped lang="scss"></style>
