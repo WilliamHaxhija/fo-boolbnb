@@ -12,12 +12,6 @@ export default {
         AppFilter,
         AppSponsorships
     },
-    props: {
-        showFilter: {
-            type: Boolean,
-            default: false
-        }
-    },
     data() {
         return {
             store,
@@ -107,9 +101,6 @@ export default {
         <div class="container position-relative">
             <div class="row" :class="$route.name === 'home' ? 'md-display-block' : ''">
                 <div class="col-lg-6 col-12 order-2 order-lg-1">
-                    <!-- Utilizza la prop showFilter per controllare la visibilità di AppFilter -->
-                    <AppFilter v-if="showFilter" @advancedSearch="getApartmentsFromApi"
-                        @resetFilters="getApartmentsFromApi"></AppFilter>
                     <div v-if="$route.name === 'home'">
                         <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi"></AppSearch>
                     </div>

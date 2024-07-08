@@ -2,12 +2,14 @@
 import axios from 'axios';
 import { store } from '../store';
 import AppSearch from '../components/AppSearch.vue';
+import AppFilter from './AppFilter.vue';
 
 export default {
     name: 'AppHeader',
 
     components: {
         AppSearch,
+        AppFilter
     },
     data() {
 
@@ -74,14 +76,15 @@ export default {
 <template>
     <header :class="{ 'header-transparent': !scrolled, 'header-white': scrolled }" class="position-sticky top-0 z-3">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light p-1 rounded" :class="z-3">
+        <nav class="navbar  navbar-light p-1 rounded" :class="z-3">
             <!-- Container wrapper -->
             <div class="container align-items-center gap-4">
                 <!-- Home Logo -->
                 <div class="sm-d-none">
-                    <router-link :to="{ name: 'home' }" class="navbar-brand mt-2 mt-lg-0">
+                    <router-link :to="{ name: 'home' }" class="navbar-brand s mt-lg-0">
                         <img src="../assets/img/logo_bnb.png" height="70" alt="MDB Logo" loading="lazy" />
                     </router-link>
+                    <AppFilter v-if="$route.name === 'results'" @advancedSearch="getApartmentsFromApi"></AppFilter>
                 </div>
 
                 <!-- componente searchbar -->
