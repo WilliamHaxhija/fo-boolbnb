@@ -13,7 +13,7 @@ export default {
 
             <!-- card -->
             <div class="ms-bg-sponsor rounded-4 p-3">
-                <h3 class="mb-5 text-center fw-bolder text-white">Sponsorizzati</h3>
+                <h3 class="mb-5 text-center fw-bolder text-white">In Evidenza</h3>
                 <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     <div class="col d-flex justify-content-center justify-content-sm-start">
                         <div class="card">
