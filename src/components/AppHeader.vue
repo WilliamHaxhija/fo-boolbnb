@@ -74,7 +74,7 @@ export default {
 <template>
     <header :class="{ 'header-transparent': !scrolled, 'header-white': scrolled }" class="position-sticky top-0 z-3">
         <!-- Navbar -->
-        <nav class="navbar navbar-expand-lg navbar-light p-1 rounded">
+        <nav class="navbar navbar-expand-lg navbar-light p-1 rounded" :class="z-3">
             <!-- Container wrapper -->
             <div class="container align-items-center gap-4">
                 <!-- Home Logo -->
