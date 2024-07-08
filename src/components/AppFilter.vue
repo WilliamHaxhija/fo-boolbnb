@@ -56,8 +56,8 @@ export default {
       <h5 class="offcanvas-title" id="staticBackdropLabel">Filtra</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body p-4">
-      <form class="bg-white p-1 rounded-4 shadow-sm">
+    <div class="offcanvas-body p-2">
+      <form class=" rounded-4">
         <div class="mb-3">
           <label class="form-label">Numero di stanze</label>
           <div class="btn-group" role="group" aria-label="Numero di stanze">
@@ -112,7 +112,8 @@ export default {
         </div>
         <div class="mb-3">
           <label for="userRadius" class="form-label">Raggio di km</label>
-          <input id="userRadius" type="number" class="form-control" v-model="store.userRadius">
+          <input id="userRadius" type="range" class="form-range mb-4" v-model="store.userRadius" min="0" max="100" step="1">
+          <div>{{ store.userRadius }} km</div>
         </div>
         <div class="mb-3">
           <p class="mb-1">Seleziona Servizi:</p>
@@ -123,7 +124,7 @@ export default {
         </div>
         <div class="d-grid gap-2">
           <button type="button" class="btn btn-primary" @click="applyFilters">Applica filtri</button>
-          <button type="button" class="btn btn-secondary" @click="resetFilters">Reset filtri</button>
+          <button type="button" class="btn btn-danger" @click="resetFilters">Reset filtri</button>
         </div>
       </form>
     </div>
@@ -142,6 +143,40 @@ export default {
   background-color: rgba(0, 123, 255, 0.1); /* Colore di sfondo al passaggio del mouse */
   border-color: rgba(0, 123, 255, 0.1); /* Colore del bordo al passaggio del mouse */
 }
+
+input[type="range"] {
+  width: 100%;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  background: #ddd;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity .2s;
+}
+
+input[type="range"]:hover {
+  opacity: 1;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #007bff;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 5px;
+  height: 5px;
+  background: #007bff;
+  cursor: pointer;
+ 
+}
+
 
 
 </style>
