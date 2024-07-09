@@ -39,17 +39,16 @@ export default {
 
 
 
-
 <template>
   <!-- Bottone per dispositivi mobili -->
-<button class="btn btn-transparent d-block d-md-none p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-  <i class="fa-solid fa-gear"></i>
-</button>
+  <button class="btn btn-transparent d-block d-md-none p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+    <i class="fa-solid fa-gear"></i>
+  </button>
 
-<!-- Bottone per desktop e tablet -->
-<button class="btn btn-primary d-none d-md-block p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-  Filtri
-</button>
+  <!-- Bottone per desktop e tablet -->
+  <button class="btn btn-primary d-none d-md-block p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+    Filtri
+  </button>
 
   <div class="offcanvas offcanvas-start rounded-4 my-3" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop" aria-labelledby="staticBackdropLabel">
     <div class="offcanvas-header">
@@ -57,7 +56,7 @@ export default {
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body p-2">
-      <form class=" rounded-4">
+      <form class="rounded-4">
         <div class="mb-3">
           <label class="form-label">Numero di stanze</label>
           <div class="btn-group" role="group" aria-label="Numero di stanze">
@@ -123,13 +122,14 @@ export default {
           </div>
         </div>
         <div class="d-grid gap-2">
-          <button type="button" class="btn btn-primary" @click="applyFilters">Applica filtri</button>
+          <button type="button" class="btn btn-primary" @click="applyFilters" data-bs-dismiss="offcanvas">Applica filtri</button>
           <button type="button" class="btn btn-danger" @click="resetFilters">Reset filtri</button>
         </div>
       </form>
     </div>
   </div>
 </template>
+
 
 
 <style lang="scss">

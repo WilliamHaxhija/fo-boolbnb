@@ -46,6 +46,11 @@ export default {
 
 
 <template>
+   <!-- messaggio invianto con successo -->
+   <div v-if="messageSent" class="alert alert-success alert-dismissible fade show" role="alert">
+        Messaggio inviato con successo!
+        <button type="button" class="btn-close" @click="closeFlashMessage" aria-label="Close"></button>
+   </div>
   <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
     aria-labelledby="offcanvasWithBothOptionsLabel">
     <div class="offcanvas-header">
@@ -53,12 +58,6 @@ export default {
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body">
-      <!-- messaggio invianto con successo -->
-      <div v-if="messageSent" class="alert alert-success alert-dismissible fade show" role="alert">
-        Messaggio inviato con successo!
-        <button type="button" class="btn-close" @click="closeFlashMessage" aria-label="Close"></button>
-      </div>
-
       <p>Inserisci tutti i campi</p>
       <form @submit.prevent="sendMessage">
         <div class="mb-3">
@@ -76,7 +75,7 @@ export default {
           <textarea class="form-control" id="text" rows="3" placeholder="Digita il messaggio" name="message"
             v-model="text" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Invia Messaggio</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="offcanvas">Invia Messaggio</button>
       </form>
     </div>
   </div>
