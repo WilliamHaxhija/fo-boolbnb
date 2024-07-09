@@ -70,7 +70,6 @@ export default {
 
 .inputGroup {
     font-family: 'Segoe UI', sans-serif;
-    margin: 1em 0 1em 0;
     width: 100%;
     position: relative;
 
