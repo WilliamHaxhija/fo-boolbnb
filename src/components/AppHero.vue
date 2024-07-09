@@ -20,7 +20,8 @@ export default {
             currentIndex: 0,
             previousIndex: null,
             nextIndex: 1,
-            windowWidth: window.innerWidth // Aggiunta per tenere traccia della larghezza della finestra
+            windowWidth: window.innerWidth, // Aggiunta per tenere traccia della larghezza della finestra
+            sponsoredApartments: {}
         };
     },
     computed: {
@@ -31,11 +32,7 @@ export default {
             return {
                 'ms-radius': this.windowWidth >= 992 // Aggiunge 'ms-radius' all'overlay solo se la larghezza della finestra è maggiore o uguale a 768px
             };
-        }
-    },
-    mounted() {
-        window.addEventListener('resize', this.handleResize); // Aggiunge un listener per l'evento 'resize' della finestra
-        this.startCityScroll();
+        },
     },
     beforeDestroy() {
         window.removeEventListener('resize', this.handleResize); // Rimuove il listener per l'evento 'resize' della finestra
@@ -90,6 +87,19 @@ export default {
             this.currentIndex = (this.currentIndex + 1) % this.cities.length;
             this.nextIndex = (this.currentIndex + 1) % this.cities.length;
         },
+        getSponsoredApartmentsFromApi() {
+            let sponsoredApartmentsUrl = `${store.apiBaseUrl}/api/apartments-sponsorships`;
+            axios.get(sponsoredApartmentsUrl)
+            .then((response) => {
+                this.sponsoredApartments = response.data;
+                console.log(this.sponsoredApartments);
+            });
+        }
+    },
+    mounted() {
+        window.addEventListener('resize', this.handleResize); // Aggiunge un listener per l'evento 'resize' della finestra
+        this.startCityScroll();
+        this.getSponsoredApartmentsFromApi();
     }
 }
 </script>
