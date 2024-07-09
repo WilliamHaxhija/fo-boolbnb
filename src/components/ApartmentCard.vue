@@ -94,10 +94,13 @@ export default {
                 </template>
             </p>
 
-            <button class="button" v-if="$route.name === 'results'">
-                <router-link :to="{ name: 'single-apartment', params: { slug: apartmentInfo.slug } }"
-                    class="text">Info</router-link>
-            </button>
+            
+                <router-link :to="{ name: 'single-apartment', params: { slug: apartmentInfo.slug } }" class="text-decoration-none">
+                    <button class="button text " v-if="$route.name === 'results'">
+                        Info
+                    </button>
+                </router-link>
+            
 
             <button v-if="$route.name === 'single-apartment'" class="btn btn-primary" type="button"
                 data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
@@ -164,7 +167,7 @@ export default {
 
 }
 
-.button .text {
+.button.text {
     color: white;
     font-weight: 700;
     font-size: 1em;
@@ -175,10 +178,8 @@ export default {
 
 
 .button:hover {
+    color: #007ACC;
     background-color: transparent;
 }
 
-.button:hover .text {
-    color: #007ACC;
-}
 </style>

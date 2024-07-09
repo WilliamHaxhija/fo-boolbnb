@@ -90,7 +90,7 @@ export default {
     font-size: 100%;
     position: absolute;
     top: -6px;
-    left: 0;
+    left: 14px;
     padding-top: 1.3em;
     pointer-events: none;
     transition: all 0.3s ease;
