@@ -52,12 +52,18 @@ export default {
 </script>
 
 <template>
-    <div class="wrapper">
+    <div class="wrapper mt-5">
 
         <!-- descrizione -->
         <div class="one">
-            <p v-if="$route.name === 'single-apartment'" class="">{{
-                apartmentInfo.description }}</p>
+            <template v-if="apartmentInfo.description">
+                <p v-if="$route.name === 'single-apartment'" class="p-3 ms-bg-border rounded-4 ms-text-justify">
+                    {{ apartmentInfo.description }}</p>
+            </template>
+            <template v-else>
+                <p class="p-3 ms-bg-border rounded-4 ms-text-justify">
+                    Nessuna descrizione</p>
+            </template>
         </div>
 
         <!-- Immagine e titolo -->
@@ -89,16 +95,16 @@ export default {
             </p>
             <p v-if="$route.name === 'single-apartment'" class="">Metri quadri: {{
                 apartmentInfo.square_meters }}</p>
-                <hr>
+            <hr>
             <!-- scorriamo l'array dei servizi e li stampiamo in pagina  -->
-             <h5 class="fs-4 fw-semibold">
+            <h5 class="fs-4 fw-semibold">
                 Cosa troverai
-             </h5>
+            </h5>
             <p>
                 <template v-if="apartmentInfo.services && apartmentInfo.services.length">
                     <ul class="list-unstyled services-grid d-flex flex-wrap gap-2">
                         <li v-for="service in apartmentInfo.services" :key="service.id">
-                       
+
                             <i :class="['fas', getServiceIcon(service.name)]" class="text-center m-2"></i>
                         </li>
                     </ul>
@@ -138,64 +144,40 @@ export default {
     grid-template-columns: repeat(2, 1fr);
     gap: 10px;
     grid-auto-rows: minmax(250px, auto);
-}
 
-.one {
-    grid-column: 1 / 4;
-    grid-row: 2 / 3;
-}
+    .one {
+        grid-column: 1 / 4;
+        grid-row: 2 / 3;
 
-.two {
-    grid-column: 1 / 2;
-    grid-row: 1 / 2;
-
-}
-
-.three {
-    grid-column: 2 / 4;
-    grid-row: 1 / 2;
-}
-
-.four {
-    grid-column: 1 / 4;
-    grid-row: 3 / 4;
-}
-
-.ms_card {
-    .ms_img_contain {
-        width: 100%;
-        height: 290px;
-        margin-top: 1rem;
-        overflow: hidden;
-
-        .ms_img {
-            object-fit: cover;
-            height: 100%;
-            max-width: 100%;
-            overflow: hidden;
+        .ms-bg-border {
+            border: 4px solid #0b1537c5;
+            box-shadow: 0px 9px 18px 0px #00000076;
         }
+
+        .ms-text-justify {
+            text-align: justify;
+        }
+
     }
 
-    .card-body {
+    .two {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 16px;
-            /* spazio tra gli elementi, puoi modificarlo come preferisci */
-        }
+    }
 
-        .services-grid li {
-            display: flex;
-            align-items: center;
-        }
+    .three {
+        grid-column: 2 / 4;
+        grid-row: 1 / 2;
+    }
 
-        .services-grid li i {
-            margin-right: 8px;
-            /* spazio tra l'icona e il testo */
-        }
+    .four {
+        grid-column: 1 / 4;
+        grid-row: 3 / 4;
     }
 }
+
+
 
 // BUTTON
 .button {
