@@ -68,7 +68,7 @@ export default {
             </template>
         </div>
 
-        <!-- Immagine e titolo -->
+        <!-- Immagine -->
         <div class="two">
             <!-- immagine -->
             <div v-if="apartmentInfo.image" class="rounded-4 overflow-hidden">
@@ -86,7 +86,7 @@ export default {
             <hr>
             <p v-if="$route.name === 'results'" class="">A {{
                 Math.round(apartmentInfo.distance)
-            }} km dal punto cercato
+                }} km dal punto cercato
             </p>
             <p v-if="$route.name === 'single-apartment'" class="">Numero di stanze: {{
                 apartmentInfo.number_of_rooms }}</p>
@@ -131,12 +131,11 @@ export default {
     <hr>
     <!-- Bottone per Contattare L Host -->
     <button v-if="$route.name === 'single-apartment'" class="btn contact-host-btn" type="button"
-            data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-            aria-controls="offcanvasWithBothOptions">
-            <i class="fa-solid fa-envelope me-2"></i>
-            Contatta l'host</button>
+        data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+        <i class="fa-solid fa-envelope me-2"></i>
+        Contatta l'host</button>
 
-        <MessageForm></MessageForm>
+    <MessageForm></MessageForm>
     <hr class=" mb-5">
 
 
@@ -237,5 +236,33 @@ export default {
 
 .button:hover .text {
     color: #007ACC;
+}
+
+/* Media query for tablets and below */
+@media (max-width: 768px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, auto);
+    }
+
+    .wrapper .one {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+    }
+
+    .wrapper .two {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+
+    .wrapper .three {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+
+    .wrapper .four {
+        grid-column: 1 / 2;
+        grid-row: 4 / 5;
+    }
 }
 </style>
