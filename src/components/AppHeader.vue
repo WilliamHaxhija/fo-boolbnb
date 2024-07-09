@@ -95,9 +95,14 @@ export default {
                 </div>
 
                 <!-- Freccia indietro per mobile quando siamo in altre rotte -->
-                <!-- <router-link v-else :to="{ name: 'home' }" class="navbar-brand mt-lg-0 d-block d-md-none">
-            <h5 class="text-small  text-black"><i class="fa-solid fa-arrow-left"></i></h5>
-        </router-link> -->
+                <router-link v-if="$route.name === 'results'" :to="{ name: 'home' }"
+                    class="col-auto navbar-brand mt-lg-0 d-block d-md-none">
+                    <h5 class="text-small text-black"><i class="fa-solid fa-arrow-left"></i></h5>
+                </router-link>
+                <router-link v-else-if="$route.name === 'single-apartment'" :to="{ name: 'results' }"
+                    class="col-auto navbar-brand mt-lg-0 d-block d-md-none">
+                    <h5 class="text-small text-black"><i class="fa-solid fa-arrow-left"></i></h5>
+                </router-link>
 
                 <!-- componente searchbar -->
                 <div v-if="$route.name === 'results'" class="col">
