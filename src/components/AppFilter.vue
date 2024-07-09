@@ -24,7 +24,7 @@ export default {
       this.store.numberOfBeds = null;
       this.store.numberOfBathrooms = null;
       this.store.selectSquareMeters = null;
-      this.store.userRadius = null;
+      this.store.userRadius = 20;
       this.store.selectedServices = [];
     },
     applyFilters() {
