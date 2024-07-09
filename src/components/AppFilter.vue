@@ -40,26 +40,57 @@ export default {
 
 
 <template>
-  <!-- Bottone per dispositivi mobili -->
-  <!-- <button class="btn btn-transparent d-block d-md-none p-1" type="button" data-bs-toggle="offcanvas"
-    data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
-    <i class="fa-solid fa-gear"></i>
-  </button> -->
-
   <!-- Bottone per desktop e tablet -->
-  <button class="ms_Btn p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
-    aria-controls="staticBackdrop">
+  <button class="ms_Btn p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+    aria-controls="offcanvasWithBothOptions">
     <i class="fa-solid fa-sliders"></i>
   </button>
+  
+  <!-- messaggio invianto con successo -->
+  <!-- <div v-if="messageSent" class="alert alert-success alert-dismissible fade show" role="alert">
+    Messaggio inviato con successo!
+    <button type="button" class="btn-close" @click="closeFlashMessage" aria-label="Close"></button>
+  </div>
 
-  <div class="offcanvas offcanvas-start rounded-4 my-3" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+  <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
+    aria-labelledby="offcanvasWithBothOptionsLabel">
+    <div class="offcanvas-header">
+      <h5 class="offcanvas-title" id="offcanvasWithBothOptionsLabel">Contatta l'host</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <p>Inserisci tutti i campi</p>
+      <form @submit.prevent="sendMessage">
+        <div class="mb-3">
+          <label for="name" class="form-label">Nome e Cognome</label>
+          <input type="text" class="form-control" id="name" placeholder="Giuseppe Amato" name="name" v-model="name"
+            required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Indirizzo e-mail</label>
+          <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email"
+            v-model="email" required>
+        </div>
+        <div class="mb-3">
+          <label for="text" class="form-label">Messaggio</label>
+          <textarea class="form-control" id="text" rows="3" placeholder="Digita il messaggio" name="message"
+            v-model="text" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="offcanvas">Invia Messaggio</button>
+      </form>
+    </div>
+  </div> -->
+
+  
+
+  <div class="offcanvas offcanvas-start rounded-4 my-3" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
     aria-labelledby="staticBackdropLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="staticBackdropLabel">Filtra</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-    <div class="offcanvas-body p-2">
-      <form class="rounded-4">
+    <div class="offcanvas-body p-3">
+      <form class="rounded-4 overflow-auto">
         <div class="mb-3">
           <label class="form-label">Numero di stanze</label>
           <div class="btn-group" role="group" aria-label="Numero di stanze">
