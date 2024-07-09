@@ -80,13 +80,13 @@ export default {
           <!-- Container wrapper -->
           <div class="container align-items-center gap-4">
              <!-- Home Logo -->
-             <div class="mt-3 d-none d-md-block">
+             <div class=" d-none d-md-block">
                 <router-link :to="{ name: 'home' }" class="navbar-brand mt-lg-0">
                    <img src="../assets/img/logo_bnb.png" height="70" alt="MDB Logo" loading="lazy" />
                 </router-link>
              </div>
              <!-- Logo per mobile quando siamo nella home-->
-             <div v-if="$route.name === 'home'" class="mt-3 d-block d-md-none">
+             <div v-if="$route.name === 'home'" class=" d-block d-md-none">
                 <router-link :to="{ name: 'home' }" class="navbar-brand  mt-lg-0">
                    <img src="../assets/img/logo_bnb.png" height="70" alt="MDB Logo" loading="lazy" />
                 </router-link>
