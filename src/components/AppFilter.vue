@@ -40,96 +40,6 @@ export default {
 
 
 <template>
-  <!-- Button trigger modal -->
-  <button type="button" class="ms_Btn" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-    <i class="fa-solid fa-sliders"></i>
-  </button>
-
-  <!-- Modal -->
-  <div class="modal fade z-3" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <div class="p-2">
-            <form class="rounded-4">
-              <div class="mb-3">
-                <label class="form-label">Numero di stanze</label>
-                <div class="btn-group" role="group" aria-label="Numero di stanze">
-                  <button type="button" class="btn btn-outline-primary" :class="{ 'active': store.numberOfRooms === 0 }"
-                    @click="store.numberOfRooms = 0">
-                    Qualsiasi
-                  </button>
-                  <button type="button" class="btn btn-outline-primary" v-for="n in 8" :key="'rooms-' + n"
-                    :class="{ 'active': store.numberOfRooms === n }" @click="store.numberOfRooms = n">
-                    {{ n }}
-                  </button>
-                </div>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Numero di letti</label>
-                <div class="btn-group" role="group" aria-label="Numero di letti">
-                  <button type="button" class="btn btn-outline-primary" :class="{ 'active': store.numberOfBeds === 0 }"
-                    @click="store.numberOfBeds = 0">
-                    Qualsiasi
-                  </button>
-                  <button type="button" class="btn btn-outline-primary" v-for="n in 8" :key="'beds-' + n"
-                    :class="{ 'active': store.numberOfBeds === n }" @click="store.numberOfBeds = n">
-                    {{ n }}
-                  </button>
-                </div>
-              </div>
-              <div class="mb-3">
-                <label class="form-label">Numero di bagni</label>
-                <div class="btn-group" role="group" aria-label="Numero di bagni">
-                  <button type="button" class="btn btn-outline-primary"
-                    :class="{ 'active': store.numberOfBathrooms === 0 }" @click="store.numberOfBathrooms = 0">
-                    Qualsiasi
-                  </button>
-                  <button type="button" class="btn btn-outline-primary" v-for="n in 8" :key="'bathrooms-' + n"
-                    :class="{ 'active': store.numberOfBathrooms === n }" @click="store.numberOfBathrooms = n">
-                    {{ n }}
-                  </button>
-                </div>
-              </div>
-              <div class="mb-3">
-                <label for="squareMeters" class="form-label">Mq</label>
-                <input id="squareMeters" type="number" class="form-control" v-model="store.selectSquareMeters">
-              </div>
-              <div class="mb-3">
-                <label for="userRadius" class="form-label">Raggio di km</label>
-                <input id="userRadius" type="range" class="form-range mb-4" v-model="store.userRadius" min="0" max="100"
-                  step="1">
-                <div>{{ store.userRadius }} km</div>
-              </div>
-              <div class="mb-3">
-                <p class="mb-1">Seleziona Servizi:</p>
-                <div v-for="service in services" :key="service.id" class="form-check">
-                  <input type="checkbox" :id="'service-' + service.id" class="form-check-input"
-                    v-model="store.selectedServices" :value="service.id">
-                  <label :for="'service-' + service.id" class="form-check-label">{{ service.name }}</label>
-                </div>
-              </div>
-              <div class="d-grid gap-2">
-                <button type="button" class="btn btn-primary" @click="applyFilters" data-bs-dismiss="modal">Applica
-                  filtri</button>
-                <button type="button" class="btn btn-danger" @click="resetFilters">Reset filtri</button>
-              </div>
-            </form>
-          </div>
-
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Understood</button>
-        </div>
-      </div>
-    </div>
-  </div>
   <!-- Bottone per dispositivi mobili -->
   <!-- <button class="btn btn-transparent d-block d-md-none p-1" type="button" data-bs-toggle="offcanvas"
     data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
@@ -137,19 +47,84 @@ export default {
   </button> -->
 
   <!-- Bottone per desktop e tablet -->
-  <!-- <button class="btn ms_Btn btn-primary d-none d-md-block p-1" type="button" data-bs-toggle="offcanvas"
-    data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+  <button class="ms_Btn p-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
+    aria-controls="staticBackdrop">
     <i class="fa-solid fa-sliders"></i>
-  </button> -->
+  </button>
 
-  <!-- <div class="offcanvas offcanvas-start rounded-4 my-3" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
+  <div class="offcanvas offcanvas-start rounded-4 my-3" data-bs-backdrop="static" tabindex="-1" id="staticBackdrop"
     aria-labelledby="staticBackdropLabel">
     <div class="offcanvas-header">
       <h5 class="offcanvas-title" id="staticBackdropLabel">Filtra</h5>
       <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
-
-  </div> -->
+    <div class="offcanvas-body p-2">
+      <form class="rounded-4">
+        <div class="mb-3">
+          <label class="form-label">Numero di stanze</label>
+          <div class="btn-group" role="group" aria-label="Numero di stanze">
+            <button type="button" class="btn btn-outline-primary" :class="{ 'active': store.numberOfRooms === 0 }"
+              @click="store.numberOfRooms = 0">
+              Qualsiasi
+            </button>
+            <button type="button" class="btn btn-outline-primary" v-for="n in 8" :key="'rooms-' + n"
+              :class="{ 'active': store.numberOfRooms === n }" @click="store.numberOfRooms = n">
+              {{ n }}
+            </button>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Numero di letti</label>
+          <div class="btn-group" role="group" aria-label="Numero di letti">
+            <button type="button" class="btn btn-outline-primary" :class="{ 'active': store.numberOfBeds === 0 }"
+              @click="store.numberOfBeds = 0">
+              Qualsiasi
+            </button>
+            <button type="button" class="btn btn-outline-primary" v-for="n in 8" :key="'beds-' + n"
+              :class="{ 'active': store.numberOfBeds === n }" @click="store.numberOfBeds = n">
+              {{ n }}
+            </button>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Numero di bagni</label>
+          <div class="btn-group" role="group" aria-label="Numero di bagni">
+            <button type="button" class="btn btn-outline-primary" :class="{ 'active': store.numberOfBathrooms === 0 }"
+              @click="store.numberOfBathrooms = 0">
+              Qualsiasi
+            </button>
+            <button type="button" class="btn btn-outline-primary" v-for="n in 8" :key="'bathrooms-' + n"
+              :class="{ 'active': store.numberOfBathrooms === n }" @click="store.numberOfBathrooms = n">
+              {{ n }}
+            </button>
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="squareMeters" class="form-label">Mq</label>
+          <input id="squareMeters" type="number" class="form-control" v-model="store.selectSquareMeters">
+        </div>
+        <div class="mb-3">
+          <label for="userRadius" class="form-label">Raggio di km</label>
+          <input id="userRadius" type="range" class="form-range mb-4" v-model="store.userRadius" min="0" max="100"
+            step="1">
+          <div>{{ store.userRadius }} km</div>
+        </div>
+        <div class="mb-3">
+          <p class="mb-1">Seleziona Servizi:</p>
+          <div v-for="service in services" :key="service.id" class="form-check">
+            <input type="checkbox" :id="'service-' + service.id" class="form-check-input"
+              v-model="store.selectedServices" :value="service.id">
+            <label :for="'service-' + service.id" class="form-check-label">{{ service.name }}</label>
+          </div>
+        </div>
+        <div class="d-grid gap-2">
+          <button type="button" class="btn btn-primary" @click="applyFilters" data-bs-dismiss="offcanvas">Applica
+            filtri</button>
+          <button type="button" class="btn btn-danger" @click="resetFilters">Reset filtri</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </template>
 
 
@@ -158,6 +133,9 @@ export default {
 .ms_Btn {
   width: 45px;
   height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid black;
   background-color: transparent;
   border-radius: 7px;
@@ -168,6 +146,22 @@ export default {
     background-color: #0b1537;
     color: #fff;
   }
+}
+
+.btn-transparent {
+  background-color: transparent;
+  /* Sfondo trasparente */
+  border-color: transparent;
+  /* Bordo trasparente */
+  color: inherit;
+  /* Colore del testo ereditato */
+}
+
+.btn-transparent:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  /* Colore di sfondo al passaggio del mouse */
+  border-color: rgba(0, 123, 255, 0.1);
+  /* Colore del bordo al passaggio del mouse */
 }
 
 input[type="range"] {
