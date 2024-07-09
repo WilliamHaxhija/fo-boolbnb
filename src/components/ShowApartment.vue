@@ -52,7 +52,9 @@ export default {
 </script>
 
 <template>
-    <div class="wrapper mt-5">
+    <h5 class="fs-2 fw-semibold mt-5">{{ apartmentInfo.title }}</h5>
+
+    <div class="wrapper">
 
         <!-- descrizione -->
         <div class="one">
@@ -68,7 +70,6 @@ export default {
 
         <!-- Immagine e titolo -->
         <div class="two">
-            <h5 class="fs-2 fw-semibold">{{ apartmentInfo.title }}</h5>
             <!-- immagine -->
             <div v-if="apartmentInfo.image" class="rounded-4 overflow-hidden">
                 <img :src="printImage(apartmentInfo.image)" :alt="apartmentInfo.slug">
@@ -80,11 +81,12 @@ export default {
 
         <!-- servizi -->
         <div class="three">
+
             <p class="fs-4 fw-semibold">{{ apartmentInfo.address }}</p>
             <hr>
             <p v-if="$route.name === 'results'" class="">A {{
                 Math.round(apartmentInfo.distance)
-                }} km dal punto cercato
+            }} km dal punto cercato
             </p>
             <p v-if="$route.name === 'single-apartment'" class="">Numero di stanze: {{
                 apartmentInfo.number_of_rooms }}</p>
@@ -115,6 +117,7 @@ export default {
                     </div>
                 </template>
             </p>
+
         </div>
 
         <!-- mappa -->
@@ -125,14 +128,14 @@ export default {
         </div>
     </div>
 
-
-
+    <hr>
     <!-- Bottone per Contattare L Host -->
-    <button v-if="$route.name === 'single-apartment'" class="btn btn-primary mt-2" type="button"
-        data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-        aria-controls="offcanvasWithBothOptions">Contatta l'host</button>
-    <MessageForm></MessageForm>
+    <button v-if="$route.name === 'single-apartment'" class="btn contact-host-btn" type="button"
+            data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
+            aria-controls="offcanvasWithBothOptions"><i class="fa-solid fa-envelope me-2"></i>Contatta l'host</button>
 
+        <MessageForm></MessageForm>
+    <hr class=" mb-5">
 
 
 </template>
@@ -175,6 +178,26 @@ export default {
         grid-column: 1 / 4;
         grid-row: 3 / 4;
     }
+}
+
+.contact-host-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+}
+
+.contact-host-btn i {
+    font-size: 1.5rem;
+}
+
+.contact-host-btn:hover {
+    background-color: #0b1537fc;
+    color: white;
+    transform: translateY(-2px);
 }
 
 
