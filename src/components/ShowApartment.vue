@@ -1,7 +1,7 @@
 <script>
 import { store } from '../store';
 import MessageForm from './MessageForm.vue';
-import AppMap from '../components/AppMap.vue';
+import AppMap from './AppMap.vue';
 
 export default {
     name: 'ApartmentCard',
@@ -53,25 +53,32 @@ export default {
 
 <template>
     <div class="wrapper">
-        <!-- Immagine e titolo -->
+
+        <!-- descrizione -->
         <div class="one">
-            <h5 class="">{{ apartmentInfo.title }}</h5>
-            <div v-if="apartmentInfo.image" class="">
-                <img :src="printImage(apartmentInfo.image)" class="" :alt="apartmentInfo.slug">
+            <p v-if="$route.name === 'single-apartment'" class="">{{
+                apartmentInfo.description }}</p>
+        </div>
+
+        <!-- Immagine e titolo -->
+        <div class="two">
+            <h5 class="fs-2 fw-semibold">{{ apartmentInfo.title }}</h5>
+            <!-- immagine -->
+            <div v-if="apartmentInfo.image" class="rounded-4 overflow-hidden">
+                <img :src="printImage(apartmentInfo.image)" :alt="apartmentInfo.slug">
             </div>
-            <div class="" v-else>
-                <img class="" src="../assets/img/image_hero.webp" alt="">
+            <div class="rounded-4 overflow-hidden" v-else>
+                <img src="../assets/img/image_hero.webp" alt="">
             </div>
         </div>
 
-        <!-- descrizione e servizi -->
-        <div class="two">
-            <p class="">{{ apartmentInfo.address }}</p>
-            <p v-if="$route.name === 'single-apartment'" class="">{{
-                apartmentInfo.description }}</p>
+        <!-- servizi -->
+        <div class="three">
+            <p class="fs-4 fw-semibold">{{ apartmentInfo.address }}</p>
+            <hr>
             <p v-if="$route.name === 'results'" class="">A {{
                 Math.round(apartmentInfo.distance)
-            }} km dal punto cercato
+                }} km dal punto cercato
             </p>
             <p v-if="$route.name === 'single-apartment'" class="">Numero di stanze: {{
                 apartmentInfo.number_of_rooms }}</p>
@@ -82,12 +89,17 @@ export default {
             </p>
             <p v-if="$route.name === 'single-apartment'" class="">Metri quadri: {{
                 apartmentInfo.square_meters }}</p>
+                <hr>
             <!-- scorriamo l'array dei servizi e li stampiamo in pagina  -->
-            <p class="card-text">
+             <h5 class="fs-4 fw-semibold">
+                Cosa troverai
+             </h5>
+            <p>
                 <template v-if="apartmentInfo.services && apartmentInfo.services.length">
-                    <ul class="list-unstyled services-grid">
+                    <ul class="list-unstyled services-grid d-flex flex-wrap gap-2">
                         <li v-for="service in apartmentInfo.services" :key="service.id">
-                            <i :class="['fas', getServiceIcon(service.name)]"></i>
+                       
+                            <i :class="['fas', getServiceIcon(service.name)]" class="text-center m-2"></i>
                         </li>
                     </ul>
                 </template>
@@ -100,7 +112,7 @@ export default {
         </div>
 
         <!-- mappa -->
-        <div class="three">
+        <div class="four">
             <div class="pt-4">
                 <AppMap :apartmentInfo="store.apartment"></AppMap>
             </div>
@@ -129,21 +141,24 @@ export default {
 }
 
 .one {
-    grid-column: 1 / 2;
-    grid-row: 1 / 3;
-    background-color: beige;
+    grid-column: 1 / 4;
+    grid-row: 2 / 3;
 }
 
 .two {
-    grid-column: 2 / 4;
-    grid-row: 1 / 3;
-    background-color: brown;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+
 }
 
 .three {
+    grid-column: 2 / 4;
+    grid-row: 1 / 2;
+}
+
+.four {
     grid-column: 1 / 4;
-    grid-row: 3 / 5;
-    background-color: deeppink;
+    grid-row: 3 / 4;
 }
 
 .ms_card {
