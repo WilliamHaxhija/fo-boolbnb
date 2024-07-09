@@ -16,7 +16,7 @@ export default {
         return {
             store,
             radius: 20,
-            cities: ['ROMA', 'LONDON', 'NEW YORK', 'TOKYO', 'PARIS', 'PECHINO', 'MOSCA', 'MADRID'],
+            cities: ['ROMA', 'LONDRA', 'NEW YORK', 'TOKYO', 'PARIGI', 'PECHINO', 'MOSCA', 'MADRID'],
             currentIndex: 0,
             previousIndex: null,
             nextIndex: 1,
