@@ -2,13 +2,13 @@
 import axios from 'axios';
 import { store } from '../store';
 import ShowApartment from '../components/ShowApartment.vue';
-import AppMap from '../components/AppMap.vue';
+
 
 export default {
     name: 'SingleApartment',
     components: {
-       ShowApartment,
-        AppMap
+        ShowApartment,
+
     },
     data() {
         return {
@@ -38,14 +38,10 @@ export default {
             </ShowApartment>
 
         </div>
-         <!-- mappa -->
-          
-        <div class="pt-4">
-            <AppMap :apartmentInfo="store.apartment"></AppMap>
-        </div>
+
+
+
     </section>
 </template>
 
-<style scoped lang="scss">
-
-</style>-
+<style scoped lang="scss"></style>

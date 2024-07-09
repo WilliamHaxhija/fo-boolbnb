@@ -66,7 +66,7 @@ export default {
                 apartmentInfo.description }}</p>
             <p v-if="$route.name === 'results'" class="card-text text-body-tertiary fw-medium">A {{
                 Math.round(apartmentInfo.distance)
-            }} km dal punto cercato
+                }} km dal punto cercato
             </p>
             <p v-if="$route.name === 'single-apartment'" class="card-text">Numero di stanze: {{
                 apartmentInfo.number_of_rooms }}</p>
@@ -79,7 +79,7 @@ export default {
                 apartmentInfo.square_meters }}</p>
 
             <!-- scorriamo l'array dei servizi e li stampiamo in pagina  -->
-            <p class="card-text">
+            <p class="card-text ms-h-container-text">
                 <template v-if="apartmentInfo.services && apartmentInfo.services.length">
                     <ul class="list-unstyled services-grid">
                         <li v-for="service in apartmentInfo.services" :key="service.id">
@@ -94,18 +94,14 @@ export default {
                 </template>
             </p>
 
-            
-                <router-link :to="{ name: 'single-apartment', params: { slug: apartmentInfo.slug } }" class="text-decoration-none">
-                    <button class="button text " v-if="$route.name === 'results'">
-                        Info
-                    </button>
-                </router-link>
-            
 
-            <button v-if="$route.name === 'single-apartment'" class="btn btn-primary" type="button"
-                data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-                aria-controls="offcanvasWithBothOptions">Contatta l'host</button>
-            <MessageForm></MessageForm>
+            <router-link :to="{ name: 'single-apartment', params: { slug: apartmentInfo.slug } }"
+                class="text-decoration-none">
+                <button class="button text " v-if="$route.name === 'results'">
+                    Info
+                </button>
+            </router-link>
+
         </div>
 
     </div>
@@ -147,6 +143,10 @@ export default {
             margin-right: 8px;
             /* spazio tra l'icona e il testo */
         }
+
+        .ms-h-container-text {
+            height: 50px;
+        }
     }
 }
 
@@ -181,5 +181,4 @@ export default {
     color: #007ACC;
     background-color: transparent;
 }
-
 </style>
