@@ -63,7 +63,7 @@ export default {
       <form @submit.prevent="sendMessage">
         <div class="mb-3">
           <label for="name" class="form-label">Nome e Cognome</label>
-          <input type="text" class="form-control" id="name" placeholder="Giuseppe Amato" name="name" v-model="name"
+          <input type="text" class="form-control" id="name" placeholder="Inserisci nome e cognome" name="name" v-model="name"
             required>
         </div>
         <div class="mb-3">
