@@ -88,11 +88,11 @@ export default {
             this.nextIndex = (this.currentIndex + 1) % this.cities.length;
         },
         getSponsoredApartmentsFromApi() {
-            let sponsoredApartmentsUrl = `${store.apiBaseUrl}/api/apartments-sponsorships`;
+            let sponsoredApartmentsUrl = `${store.apiBaseUrl}/api/sponsored-apartments`;
+            console.log(sponsoredApartmentsUrl);
             axios.get(sponsoredApartmentsUrl)
             .then((response) => {
                 this.sponsoredApartments = response.data;
-                console.log(this.sponsoredApartments);
             });
         }
     },
