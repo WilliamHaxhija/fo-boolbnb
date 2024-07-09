@@ -132,7 +132,9 @@ export default {
     <!-- Bottone per Contattare L Host -->
     <button v-if="$route.name === 'single-apartment'" class="btn contact-host-btn" type="button"
             data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-            aria-controls="offcanvasWithBothOptions"><i class="fa-solid fa-envelope me-2"></i>Contatta l'host</button>
+            aria-controls="offcanvasWithBothOptions">
+            <i class="fa-solid fa-envelope me-2"></i>
+            Contatta l'host</button>
 
         <MessageForm></MessageForm>
     <hr class=" mb-5">
