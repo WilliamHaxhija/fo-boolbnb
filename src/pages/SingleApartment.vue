@@ -2,13 +2,13 @@
 import axios from 'axios';
 import { store } from '../store';
 import ShowApartment from '../components/ShowApartment.vue';
-import AppMap from '../components/AppMap.vue';
+
 
 export default {
     name: 'SingleApartment',
     components: {
         ShowApartment,
-        AppMap
+
     },
     data() {
         return {
@@ -63,6 +63,9 @@ export default {
             </ShowApartment>
 
         </div>
+
+
+
         <!-- mappa -->
 
         <div class="pt-4">

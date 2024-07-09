@@ -1,11 +1,13 @@
 <script>
 import { store } from '../store';
 import MessageForm from './MessageForm.vue';
+import AppMap from './AppMap.vue';
 
 export default {
     name: 'ApartmentCard',
     components: {
-        MessageForm
+        MessageForm,
+        AppMap
     },
     props: {
         apartmentInfo: Object
@@ -50,42 +52,62 @@ export default {
 </script>
 
 <template>
-    <div class="ms_card rounded-4 row align-items-center p-2  ">
-        <div class="col-lg-6 col-md-12">
-            <h5 class="card-title fw-semibold">{{ apartmentInfo.title }}</h5>
-            <div v-if="apartmentInfo.image" class="ms_img_contain rounded-4">
-                <img :src="printImage(apartmentInfo.image)" class="ms_img" :alt="apartmentInfo.slug">
+    <h5 class="fs-2 fw-semibold mt-5">{{ apartmentInfo.title }}</h5>
+
+    <div class="wrapper">
+
+        <!-- descrizione -->
+        <div class="one">
+            <template v-if="apartmentInfo.description">
+                <p v-if="$route.name === 'single-apartment'" class="p-3 ms-bg-border rounded-4 ms-text-justify">
+                    {{ apartmentInfo.description }}</p>
+            </template>
+            <template v-else>
+                <p class="p-3 ms-bg-border rounded-4 ms-text-justify">
+                    Nessuna descrizione</p>
+            </template>
+        </div>
+
+        <!-- Immagine -->
+        <div class="two">
+            <!-- immagine -->
+            <div v-if="apartmentInfo.image" class="rounded-4 overflow-hidden">
+                <img :src="printImage(apartmentInfo.image)" :alt="apartmentInfo.slug">
             </div>
-            <div class="ms_img_contain rounded-4" v-else>
-                <img class="ms_img" src="../assets/img/image_hero.webp" alt="">
+            <div class="rounded-4 overflow-hidden" v-else>
+                <img src="../assets/img/image_hero.webp" alt="">
             </div>
         </div>
 
+        <!-- servizi -->
+        <div class="three">
 
-        <div class="card-body col-lg-6 col-md-12 mt-3">
-            <p class="card-text fw-semibold">{{ apartmentInfo.address }}</p>
-            <p v-if="$route.name === 'single-apartment'" class="card-text text-black ">{{
-                apartmentInfo.description }}</p>
-            <p v-if="$route.name === 'results'" class="card-text text-body-tertiary fw-medium">A {{
+            <p class="fs-4 fw-semibold">{{ apartmentInfo.address }}</p>
+            <hr>
+            <p v-if="$route.name === 'results'" class="">A {{
                 Math.round(apartmentInfo.distance)
-            }} km dal punto cercato
+                }} km dal punto cercato
             </p>
-            <p v-if="$route.name === 'single-apartment'" class="card-text">Numero di stanze: {{
+            <p v-if="$route.name === 'single-apartment'" class="">Numero di stanze: {{
                 apartmentInfo.number_of_rooms }}</p>
-            <p v-if="$route.name === 'single-apartment'" class="card-text">Numero di letti: {{
+            <p v-if="$route.name === 'single-apartment'" class="">Numero di letti: {{
                 apartmentInfo.number_of_beds }}</p>
-            <p v-if="$route.name === 'single-apartment'" class="card-text">Numero di bagni: {{
+            <p v-if="$route.name === 'single-apartment'" class="">Numero di bagni: {{
                 apartmentInfo.number_of_bathrooms }}
             </p>
-            <p v-if="$route.name === 'single-apartment'" class="card-text">Metri quadri: {{
+            <p v-if="$route.name === 'single-apartment'" class="">Metri quadri: {{
                 apartmentInfo.square_meters }}</p>
-
+            <hr>
             <!-- scorriamo l'array dei servizi e li stampiamo in pagina  -->
-            <p class="card-text">
+            <h5 class="fs-4 fw-semibold">
+                Cosa troverai
+            </h5>
+            <p>
                 <template v-if="apartmentInfo.services && apartmentInfo.services.length">
-                    <ul class="list-unstyled services-grid">
+                    <ul class="list-unstyled services-grid d-flex flex-wrap gap-2">
                         <li v-for="service in apartmentInfo.services" :key="service.id">
-                            <i :class="['fas', getServiceIcon(service.name)]"></i>
+
+                            <i :class="['fas', getServiceIcon(service.name)]" class="text-center m-2"></i>
                         </li>
                     </ul>
                 </template>
@@ -96,57 +118,90 @@ export default {
                 </template>
             </p>
 
-            <button class="button" v-if="$route.name === 'results'">
-                <router-link :to="{ name: 'single-apartment', params: { slug: apartmentInfo.slug } }"
-                    class="text">Info</router-link>
-            </button>
-
-            <button v-if="$route.name === 'single-apartment'" class="btn btn-primary mt-2" type="button"
-                data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions"
-                aria-controls="offcanvasWithBothOptions">Contatta l'host</button>
-            <MessageForm></MessageForm>
         </div>
 
+        <!-- mappa -->
+        <div class="four">
+            <div class="pt-4">
+                <AppMap :apartmentInfo="store.apartment"></AppMap>
+            </div>
+        </div>
     </div>
+
+    <hr>
+    <!-- Bottone per Contattare L Host -->
+    <button v-if="$route.name === 'single-apartment'" class="btn contact-host-btn" type="button"
+        data-bs-toggle="offcanvas" data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
+        <i class="fa-solid fa-envelope me-2"></i>
+        Contatta l'host</button>
+
+    <MessageForm></MessageForm>
+    <hr class=" mb-5">
+
+
 </template>
 
 
 <style scoped lang="scss">
-.ms_card {
-    .ms_img_contain {
-        width: 100%;
-        height: 290px;
-        margin-top: 1rem;
-        overflow: hidden;
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    grid-auto-rows: minmax(250px, auto);
 
-        .ms_img {
-            object-fit: cover;
-            height: 100%;
-            max-width: 100%;
-            overflow: hidden;
+    .one {
+        grid-column: 1 / 4;
+        grid-row: 2 / 3;
+
+        .ms-bg-border {
+            border: 4px solid #0b1537c5;
+            box-shadow: 0px 9px 18px 0px #00000076;
         }
+
+        .ms-text-justify {
+            text-align: justify;
+        }
+
     }
 
-    .card-body {
+    .two {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 16px;
-            /* spazio tra gli elementi, puoi modificarlo come preferisci */
-        }
+    }
 
-        .services-grid li {
-            display: flex;
-            align-items: center;
-        }
+    .three {
+        grid-column: 2 / 4;
+        grid-row: 1 / 2;
+    }
 
-        .services-grid li i {
-            margin-right: 8px;
-            /* spazio tra l'icona e il testo */
-        }
+    .four {
+        grid-column: 1 / 4;
+        grid-row: 3 / 4;
     }
 }
+
+.contact-host-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+}
+
+.contact-host-btn i {
+    font-size: 1.5rem;
+}
+
+.contact-host-btn:hover {
+    background-color: #0b1537fc;
+    color: white;
+    transform: translateY(-2px);
+}
+
+
 
 // BUTTON
 .button {
@@ -181,5 +236,33 @@ export default {
 
 .button:hover .text {
     color: #007ACC;
+}
+
+/* Media query for tablets and below */
+@media (max-width: 768px) {
+    .wrapper {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, auto);
+    }
+
+    .wrapper .one {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+    }
+
+    .wrapper .two {
+        grid-column: 1 / 2;
+        grid-row: 1 / 2;
+    }
+
+    .wrapper .three {
+        grid-column: 1 / 2;
+        grid-row: 2 / 3;
+    }
+
+    .wrapper .four {
+        grid-column: 1 / 2;
+        grid-row: 4 / 5;
+    }
 }
 </style>

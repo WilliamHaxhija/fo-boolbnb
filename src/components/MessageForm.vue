@@ -46,6 +46,11 @@ export default {
 
 
 <template>
+  <!-- messaggio invianto con successo -->
+  <div v-if="messageSent" class="alert alert-success alert-dismissible fade show" role="alert">
+    Messaggio inviato con successo!
+    <button type="button" class="btn-close" @click="closeFlashMessage" aria-label="Close"></button>
+  </div>
   <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
     aria-labelledby="offcanvasWithBothOptionsLabel">
     <div class="offcanvas-header">
