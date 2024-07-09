@@ -1,88 +1,35 @@
 <script>
+import { store } from '../store';
 
 export default {
     name: 'AppSponsorships',
+    props: {
+      sponsoredInfo: Object  
+    },
+    methods: {
+        printImage(imageUrl) {
+            return `${store.apiBaseUrl}/storage/${imageUrl}`;
+        }
+    }
 }
 </script>
 
 <template>
-
-    <section class="my-5">
-        <div class="container py-4">
-            
-
             <!-- card -->
-            <div class="ms-bg-sponsor rounded-4 p-3">
-                <h3 class="mb-5 text-center fw-bolder text-white">In Evidenza</h3>
-                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                     <div class="col d-flex justify-content-center justify-content-sm-start">
                         <div class="card">
-                            <div class="img-container">
-                                <img src="../assets/img/images.jpeg" alt="">
+                            <div v-if="sponsoredInfo.image" class="img-container">
+                                <img :src="printImage(sponsoredInfo.image)" :alt="sponsoredInfo.title">
+                            </div>
+                            <div v-else class="img-container">
+                                <img src="../assets/img/imagenotfound.webp" alt="placeholder">
                             </div>
                             <div class="textBox">
-                                <p class="text head">Ethereum</p>
-                                <span>Cryptocurrency</span>
-                                <p class="text price">1.654,34€</p>
+                                <p class="text head">{{ sponsoredInfo.title }}</p>
+                                <span>{{ sponsoredInfo.address }}</span>
                             </div>
                         </div>
                     </div>
-                    <div class="col d-flex justify-content-center justify-content-sm-start">
-                        <div class="card">
-                            <div class="img-container">
-                                <img src="../assets/img/images.jpeg" alt="">
-                            </div>
-                            <div class="textBox">
-                                <p class="text head">Ethereum</p>
-                                <span>Cryptocurrency</span>
-                                <p class="text price">1.654,34€</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-center justify-content-sm-start">
-                        <div class="card">
-                            <div class="img-container">
-                                <img src="../assets/img/images.jpeg" alt="">
-                            </div>
-                            <div class="textBox">
-                                <p class="text head">Ethereum</p>
-                                <span>Cryptocurrency</span>
-                                <p class="text price">1.654,34€</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-center justify-content-sm-start">
-                        <div class="card">
-                            <div class="img-container">
-                                <img src="../assets/img/images.jpeg" alt="">
-                            </div>
-                            <div class="textBox">
-                                <p class="text head">Ethereum</p>
-                                <span>Cryptocurrency</span>
-                                <p class="text price">1.654,34€</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col d-flex justify-content-center justify-content-sm-start">
-                        <div class="card">
-                            <div class="img-container">
-                                <img src="../assets/img/images.jpeg" alt="">
-                            </div>
-                            <div class="textBox">
-                                <p class="text head">Ethereum</p>
-                                <span>Cryptocurrency</span>
-                                <p class="text price">1.654,34€</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-        </div>
-
-    </section>
-
 </template>
 
 <style scoped lang="scss">

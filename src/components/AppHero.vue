@@ -20,7 +20,8 @@ export default {
             currentIndex: 0,
             previousIndex: null,
             nextIndex: 1,
-            windowWidth: window.innerWidth // Aggiunta per tenere traccia della larghezza della finestra
+            windowWidth: window.innerWidth, // Aggiunta per tenere traccia della larghezza della finestra
+            sponsoredApartments: {}
         };
     },
     computed: {
@@ -31,11 +32,7 @@ export default {
             return {
                 'ms-radius': this.windowWidth >= 992 // Aggiunge 'ms-radius' all'overlay solo se la larghezza della finestra è maggiore o uguale a 768px
             };
-        }
-    },
-    mounted() {
-        window.addEventListener('resize', this.handleResize); // Aggiunge un listener per l'evento 'resize' della finestra
-        this.startCityScroll();
+        },
     },
     beforeDestroy() {
         window.removeEventListener('resize', this.handleResize); // Rimuove il listener per l'evento 'resize' della finestra
@@ -90,6 +87,19 @@ export default {
             this.currentIndex = (this.currentIndex + 1) % this.cities.length;
             this.nextIndex = (this.currentIndex + 1) % this.cities.length;
         },
+        getSponsoredApartmentsFromApi() {
+            let sponsoredApartmentsUrl = `${store.apiBaseUrl}/api/sponsored-apartments`;
+            console.log(sponsoredApartmentsUrl);
+            axios.get(sponsoredApartmentsUrl)
+            .then((response) => {
+                this.sponsoredApartments = response.data;
+            });
+        }
+    },
+    mounted() {
+        window.addEventListener('resize', this.handleResize); // Aggiunge un listener per l'evento 'resize' della finestra
+        this.startCityScroll();
+        this.getSponsoredApartmentsFromApi();
     }
 }
 </script>
@@ -118,7 +128,16 @@ export default {
     </section>
     <!-- componente card sponsorizzazioni -->
     <div v-if="$route.name === 'home'">
-        <AppSponsorships></AppSponsorships>
+        <section class="my-5">
+            <div class="container py-4">
+                <div class="ms-bg-sponsor rounded-4 p-3">
+                    <h3 class="mb-5 text-center fw-bolder text-white">In Evidenza</h3>
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        <AppSponsorships v-for="sponsoredApartment in sponsoredApartments" :sponsoredInfo="sponsoredApartment" :key="sponsoredApartment.id"></AppSponsorships>
+                    </div>
+                </div>
+            </div>
+       </section>
     </div>
 </template>
 
@@ -181,5 +200,8 @@ export default {
 
 .rounded-0 {
     border-radius: 0 !important;
+}
+.ms-bg-sponsor {
+    background-color: #4d93ad;
 }
 </style>
