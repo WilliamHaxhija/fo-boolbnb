@@ -1,4 +1,5 @@
 <script>
+import { store } from '../store';
 
 export default {
     name: 'AppSponsorships',
@@ -6,9 +7,9 @@ export default {
       sponsoredInfo: Object  
     },
     methods: {
-        getImageUrl(image) {
-            return new URL(`../assets/img/${image}`, import.meta.url).href;
-    }
+        printImage(imageUrl) {
+            return `${store.apiBaseUrl}/storage/${imageUrl}`;
+        }
     }
 }
 </script>
@@ -17,8 +18,11 @@ export default {
             <!-- card -->
                     <div class="col d-flex justify-content-center justify-content-sm-start">
                         <div class="card">
-                            <div class="img-container">
-                                <img :src="sponsoredInfo.image" :alt="sponsoredInfo.title">
+                            <div v-if="sponsoredInfo.image" class="img-container">
+                                <img :src="printImage(sponsoredInfo.image)" :alt="sponsoredInfo.title">
+                            </div>
+                            <div v-else class="img-container">
+                                <img src="../assets/img/imagenotfound.webp" alt="placeholder">
                             </div>
                             <div class="textBox">
                                 <p class="text head">{{ sponsoredInfo.title }}</p>
