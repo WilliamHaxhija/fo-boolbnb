@@ -81,19 +81,19 @@ export default {
           <div class="container align-items-center gap-4">
              <!-- Home Logo -->
              <div class="mt-3 d-none d-md-block">
-                <router-link :to="{ name: 'home' }" class="navbar-brand s mt-lg-0">
+                <router-link :to="{ name: 'home' }" class="navbar-brand mt-lg-0">
                    <img src="../assets/img/logo_bnb.png" height="70" alt="MDB Logo" loading="lazy" />
                 </router-link>
              </div>
              <!-- Logo per mobile quando siamo nella home-->
              <div v-if="$route.name === 'home'" class="mt-3 d-block d-md-none">
-                <router-link :to="{ name: 'home' }" class="navbar-brand s mt-lg-0">
+                <router-link :to="{ name: 'home' }" class="navbar-brand  mt-lg-0">
                    <img src="../assets/img/logo_bnb.png" height="70" alt="MDB Logo" loading="lazy" />
                 </router-link>
              </div>
              <!-- Freccia indietro per mobile quando siamo in altre rotte -->
-             <router-link v-else :to="{ name: 'home' }" class="navbar-brand s mt-lg-0">
-                <h5 class="text-small d-block d-md-none text-black"><i class="fa-solid fa-arrow-left"></i></h5>
+             <router-link v-else :to="{ name: 'home' }" class="navbar-brand mt-lg-0 d-block d-md-none">
+                <h5 class="text-small  text-black"><i class="fa-solid fa-arrow-left"></i></h5>
              </router-link>
              <!-- componente searchbar -->
              <div v-if="$route.name === 'results'" class="flex-grow-1">
