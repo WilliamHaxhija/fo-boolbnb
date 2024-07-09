@@ -23,7 +23,7 @@ export default {
     <section>
         <div class="container">
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                <div class="col d-flex" v-for="apartment in store.searchedApartments"
+                <div class="col d-flex justify-content-center" v-for="apartment in store.searchedApartments"
                     :key="apartment.id">
                     <ApartmentCard :apartmentInfo="apartment"></ApartmentCard>
                 </div>
