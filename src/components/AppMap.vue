@@ -26,15 +26,23 @@ export default {
     methods: {
         // Funzione che richiama la mappa
         getMapApi() {
-            const apiKey = store.tomTomQueryParams.tomTomKey;
-            const apartment = this.apartmentInfo
-            const map = L.map('map').setView([apartment.lat, apartment.long], 14);
+            if (!this.map) { // Assicurati di creare la mappa solo una volta
+                const apiKey = store.tomTomQueryParams.tomTomKey;
+                const apartment = this.apartmentInfo;
+                this.map = L.map('map').setView([apartment.lat, apartment.long], 14);
 
-            L.tileLayer(`https://api.tomtom.com/map/1/tile/basic/main/{z}/{x}/{y}.png?key=${apiKey}`, {
-                attribution: '&copy; <a href="https://www.tomtom.com">TomTom</a> contributors'
-            }).addTo(map);
+                L.tileLayer(`https://api.tomtom.com/map/1/tile/basic/main/{z}/{x}/{y}.png?key=${apiKey}`, {
+                    attribution: '&copy; <a href="https://www.tomtom.com">TomTom</a> contributors'
+                }).addTo(this.map);
 
-            L.marker([apartment.lat, apartment.long]).addTo(map)
+                L.marker([apartment.lat, apartment.long]).addTo(this.map);
+            }
+        }
+    },
+    mounted() {
+        // Chiamare getMapApi() anche quando il componente è montato
+        if (this.apartmentInfo && this.apartmentInfo.lat && this.apartmentInfo.long) {
+            this.getMapApi();
         }
     }
 };
@@ -43,19 +51,17 @@ export default {
 <template>
     <div class="container d-flex justify-content-center">
         <div class="card mb-5">
-            <div  id="map">
-            </div>
+            <div id="map"></div>
         </div>
     </div>
 </template>
 
 <style scoped lang="scss">
-.card{
+.card {
     width: 100%;
 }
 #map {
     height: 31.25rem;
     z-index: 0;
-    
 }
 </style>
