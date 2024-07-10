@@ -119,6 +119,7 @@ export default {
 
         .ms_img {
             object-fit: cover;
+            width: 100%;
             height: 100%;
             max-width: 100%;
             overflow: hidden;
