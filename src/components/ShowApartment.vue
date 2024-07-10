@@ -72,10 +72,10 @@ export default {
         <div class="two">
             <!-- immagine -->
             <div v-if="apartmentInfo.image" class="rounded-4 overflow-hidden">
-                <img :src="printImage(apartmentInfo.image)" :alt="apartmentInfo.slug">
+                <img :src="printImage(apartmentInfo.image)" class="card-img-top" :alt="apartmentInfo.slug">
             </div>
             <div class="rounded-4 overflow-hidden" v-else>
-                <img src="../assets/img/image_hero.webp" alt="">
+                <img src="../assets/img/image_hero.webp" class="card-img-top" alt="img-placeholder">
             </div>
         </div>
 
