@@ -154,7 +154,7 @@ export default {
         grid-row: 2 / 3;
 
         .ms-bg-border {
-            border: 4px solid #0b1537c5;
+            border: 2px solid #0b1537c5;
             box-shadow: 0px 9px 18px 0px #00000076;
         }
 
