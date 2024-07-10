@@ -15,22 +15,25 @@ export default {
 </script>
 
 <template>
-            <!-- card -->
-                    <div class="col d-flex justify-content-center justify-content-sm-start">
-                        <div class="card">
-                            <div v-if="sponsoredInfo.image" class="img-container">
-                                <img :src="printImage(sponsoredInfo.image)" :alt="sponsoredInfo.title">
-                            </div>
-                            <div v-else class="img-container">
-                                <img src="../assets/img/imagenotfound.webp" alt="placeholder">
-                            </div>
-                            <div class="textBox">
-                                <p class="text head">{{ sponsoredInfo.title }}</p>
-                                <span>{{ sponsoredInfo.address }}</span>
-                            </div>
-                        </div>
-                    </div>
+    <!-- card -->
+    <div class="col d-flex justify-content-center justify-content-sm-start">
+        <div class="card">
+            <div class="sponsored-icon">⭐</div>
+            <div v-if="sponsoredInfo.image" class="img-container">
+                <img :src="printImage(sponsoredInfo.image)" :alt="sponsoredInfo.title">
+            </div>
+            <div v-else class="img-container">
+                <img src="../assets/img/imagenotfound.webp" alt="placeholder">
+            </div>
+            <div class="textBox">
+                <p class="text head">{{ sponsoredInfo.title }}</p>
+                <span>{{ sponsoredInfo.address }}</span>
+            </div>
+        </div>
+    </div>
+                   
 </template>
+
 
 <style scoped lang="scss">
 .card {
@@ -59,6 +62,13 @@ export default {
     width: 100%;
     height: auto;
     object-fit: cover;
+}
+.sponsored-icon {
+    position: absolute;
+    top: 0px;
+    right: 5px;
+    color: yellow;
+    font-size: 20px;
 }
 
 .textBox {
