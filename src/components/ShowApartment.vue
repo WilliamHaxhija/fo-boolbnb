@@ -86,7 +86,7 @@ export default {
             <hr>
             <p v-if="$route.name === 'results'" class="">A {{
                 Math.round(apartmentInfo.distance)
-                }} km dal punto cercato
+            }} km dal punto cercato
             </p>
             <p v-if="$route.name === 'single-apartment'" class="">Numero di stanze: {{
                 apartmentInfo.number_of_rooms }}</p>

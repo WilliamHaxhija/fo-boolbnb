@@ -51,13 +51,14 @@ export default {
 
 <template>
 
-    <div class="ms_card rounded-4">
+    <div class="ms_card rounded-4 position-relative">
         <div v-if="apartmentInfo.image" class="ms_img_contain rounded-4">
             <img :src="printImage(apartmentInfo.image)" class="ms_img" :alt="apartmentInfo.slug">
         </div>
         <div class="ms_img_contain rounded-4" v-else>
             <img class="ms_img" src="../assets/img/image_hero.webp" alt="">
         </div>
+        <div v-if="apartmentInfo.sponsorship_count >= 1" class="sponsored-icon">👑</div>
 
         <div class="card-body">
             <h5 class="card-title fw-semibold">{{ apartmentInfo.title }}</h5>
@@ -150,6 +151,15 @@ export default {
         }
     }
 }
+
+.sponsored-icon {
+    position: absolute;
+    top: 15px;
+    right: 5px;
+    color: yellow;
+    font-size: 20px;
+}
+
 
 // BUTTON
 .button {
