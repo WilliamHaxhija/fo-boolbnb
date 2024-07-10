@@ -21,7 +21,7 @@ export default {
 <template>
     <div>
 
-        <div class="position-relative ms_search">
+        <div class="position-relative ms_search mt-2">
 
             <div class="inputGroup">
                 <input :class="[$route.name === 'results' ? 'text-dark' : 'text-white']" autocomplete="off" id="floatingInput"

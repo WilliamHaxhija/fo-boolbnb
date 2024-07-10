@@ -74,7 +74,7 @@ export default {
 </script>
 
 <template>
-    <header :class="{ 'header-transparent': !scrolled, 'header-white': scrolled }" class="position-sticky top-0 z-3">
+    <header :class="{ 'header-transparent': !scrolled, 'header-white': scrolled }" class="position-sticky top-0 z-3 mb-1">
         <div class="container-lg">
             <!-- Navbar -->
             <nav class="navbar navbar-light p-1 row align-items-center">
