@@ -136,7 +136,7 @@ export default {
         </div>
         <div class="mb-3">
           <label for="userRadius" class="form-label">Raggio di km</label>
-          <input id="userRadius" type="range" class="form-range mb-4" v-model="store.userRadius" min="0" max="100"
+          <input id="userRadius" type="range" class="form-range mb-4" v-model="store.userRadius" min="1" max="2000"
             step="1">
           <div>{{ store.userRadius }} km</div>
         </div>
