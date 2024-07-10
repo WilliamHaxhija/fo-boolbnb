@@ -18,7 +18,7 @@ export default {
     <!-- card -->
     <div class="col d-flex justify-content-center justify-content-sm-start">
         <div class="card">
-            <div class="sponsored-icon">⭐</div>
+            <div class="sponsored-icon">👑</div>
             <div v-if="sponsoredInfo.image" class="img-container">
                 <img :src="printImage(sponsoredInfo.image)" :alt="sponsoredInfo.title">
             </div>

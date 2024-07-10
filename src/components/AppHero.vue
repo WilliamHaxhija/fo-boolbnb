@@ -138,18 +138,8 @@ export default {
                     <h3 class="mb-5 fw-bolder text-white position-sticky">In Evidenza</h3>
                     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
                         
-                        <!-- <AppSponsorships v-for="sponsoredApartment in sponsoredApartments"
-                            :sponsoredInfo="sponsoredApartment" :key="sponsoredApartment.id"></AppSponsorships> -->
-
-                        <div class="card" style="width: 18rem;">
-                            <img src="..." class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">Some quick example text to build on the card title and make up the
-                                    bulk of the card's content.</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
-                            </div>
-                        </div>
+                        <AppSponsorships v-for="sponsoredApartment in sponsoredApartments"
+                            :sponsoredInfo="sponsoredApartment" :key="sponsoredApartment.id"></AppSponsorships>
                     </div>
                 </div>
             </div>
@@ -183,17 +173,7 @@ export default {
         z-index: 2;
     }
 
-    .ms-bg {
-        position: absolute;
-        top: 0;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        background-color: rgba(255, 255, 255, 0.3);
-        backdrop-filter: blur(3px);
-        -webkit-backdrop-filter: blur(3px);
-        filter: blur(row-cols-md-2px);
-    }
+
 }
 
 .cities-container {
@@ -238,7 +218,7 @@ export default {
 }
 
 .ms-container-bg {
-    background-image: url(../assets/img/img-bg.png);
+    background-image: url(../assets/img/plant-stucco-wall-background-zoom-calls_23-2149684466.avif);
     background-position: center;
     background-size: cover;
 
