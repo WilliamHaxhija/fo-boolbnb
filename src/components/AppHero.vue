@@ -175,9 +175,10 @@ export default {
         bottom: 0;
         left: 0;
         right: 0;
-        background-color: #ffffff4d;
-        filter: blur(8px);
-        -webkit-filter: blur(8px);
+        background-color: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(3px);
+        -webkit-backdrop-filter: blur(3px);
+        filter: blur(3px);
     }
 }
 
