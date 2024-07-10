@@ -110,7 +110,7 @@ export default {
         <!-- Overlay nero trasparente -->
         <div :class="overlayClasses" class="overlay"></div>
         <div class="container position-relative">
-            <div class="ms-bg rounded-4"></div>
+            <div class=" rounded-4"></div>
             <div class="row align-items-center rounded-4" :class="$route.name === 'home' ? 'md-display-block' : ''">
                 <div class="col-lg-6 col-12 order-2 order-lg-1 my-5 ">
                     <div v-if="$route.name === 'home'">
@@ -130,16 +130,30 @@ export default {
     </section>
     <!-- componente card sponsorizzazioni -->
     <div v-if="$route.name === 'home'">
-        <section class="my-5">
-            <div class="container py-4">
-                <div class="ms-bg-sponsor rounded-4 p-3">
-                    <h3 class="mb-5 text-center fw-bolder text-white">In Evidenza</h3>
+        <section class="ms-container-bg my-5 p-5 ">
+            
+            <div class="container  py-4 position-relative">
+                <div class="ms-bg-sponsorship rounded-4"></div>
+                <div class="rounded-4 p-3">
+                    <h3 class="mb-5 fw-bolder text-white position-sticky">In Evidenza</h3>
                     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                        <AppSponsorships v-for="sponsoredApartment in sponsoredApartments"
-                            :sponsoredInfo="sponsoredApartment" :key="sponsoredApartment.id"></AppSponsorships>
+                        
+                        <!-- <AppSponsorships v-for="sponsoredApartment in sponsoredApartments"
+                            :sponsoredInfo="sponsoredApartment" :key="sponsoredApartment.id"></AppSponsorships> -->
+
+                        <div class="card" style="width: 18rem;">
+                            <img src="..." class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">Some quick example text to build on the card title and make up the
+                                    bulk of the card's content.</p>
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
+
         </section>
     </div>
 </template>
@@ -178,7 +192,7 @@ export default {
         background-color: rgba(255, 255, 255, 0.3);
         backdrop-filter: blur(3px);
         -webkit-backdrop-filter: blur(3px);
-        filter: blur(3px);
+        filter: blur(row-cols-md-2px);
     }
 }
 
@@ -223,7 +237,21 @@ export default {
     border-radius: 0 !important;
 }
 
-.ms-bg-sponsor {
-    background-color: #4d93ad;
+.ms-container-bg {
+    background-image: url(../assets/img/img-bg.png);
+    background-position: center;
+    background-size: cover;
+
+    .ms-bg-sponsorship {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(3px);
+        // filter: blur(3px);
+    }
 }
 </style>

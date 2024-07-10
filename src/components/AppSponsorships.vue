@@ -4,7 +4,7 @@ import { store } from '../store';
 export default {
     name: 'AppSponsorships',
     props: {
-      sponsoredInfo: Object  
+        sponsoredInfo: Object
     },
     methods: {
         printImage(imageUrl) {
@@ -31,7 +31,6 @@ export default {
             </div>
         </div>
     </div>
-                   
 </template>
 
 
@@ -63,6 +62,7 @@ export default {
     height: auto;
     object-fit: cover;
 }
+
 .sponsored-icon {
     position: absolute;
     top: 0px;
