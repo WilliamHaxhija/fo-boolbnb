@@ -130,14 +130,13 @@ export default {
     </section>
     <!-- componente card sponsorizzazioni -->
     <div v-if="$route.name === 'home'">
-        <section class="ms-container-bg my-5 p-5 ">
-            
+        <section class="ms-container-bg my-5 p-5 d-flex align-items-center ">
+
             <div class="container  py-4 position-relative">
                 <div class="ms-bg-sponsorship rounded-4"></div>
                 <div class="rounded-4 p-3">
                     <h3 class="mb-5 fw-bolder text-white position-sticky">In Evidenza</h3>
                     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                        
                         <AppSponsorships v-for="sponsoredApartment in sponsoredApartments"
                             :sponsoredInfo="sponsoredApartment" :key="sponsoredApartment.id"></AppSponsorships>
                     </div>
@@ -218,7 +217,8 @@ export default {
 }
 
 .ms-container-bg {
-    background-image: url(../assets/img/plant-stucco-wall-background-zoom-calls_23-2149684466.avif);
+   
+    background-color: rgba(155, 155, 155, 0.533);
     background-position: center;
     background-size: cover;
 
