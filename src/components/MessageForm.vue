@@ -46,11 +46,7 @@ export default {
 
 
 <template>
-  <!-- messaggio invianto con successo -->
-  <div v-if="messageSent" class="alert alert-success alert-dismissible fade show" role="alert">
-    Messaggio inviato con successo!
-    <button type="button" class="btn-close" @click="closeFlashMessage" aria-label="Close"></button>
-  </div>
+  
   <div class="offcanvas offcanvas-start" data-bs-scroll="true" tabindex="-1" id="offcanvasWithBothOptions"
     aria-labelledby="offcanvasWithBothOptionsLabel">
     <div class="offcanvas-header">
@@ -62,28 +58,28 @@ export default {
       <form @submit.prevent="sendMessage">
         <div class="mb-3">
           <label for="name" class="form-label">Nome e Cognome</label>
-          <input type="text" class="form-control" id="name" placeholder="Inserisci nome e cognome" name="name" v-model="name"
-            required>
+          <input type="text" class="form-control rounded-4" id="name" placeholder="Inserisci nome e cognome" name="name"
+            v-model="name" required>
         </div>
         <div class="mb-3">
           <label for="email" class="form-label">Indirizzo e-mail</label>
-          <input type="email" class="form-control" id="email" placeholder="name@example.com" name="email"
+          <input type="email" class="form-control rounded-4" id="email" placeholder="name@example.com" name="email"
             v-model="email" required>
         </div>
         <div class="mb-3">
           <label for="text" class="form-label">Messaggio</label>
-          <textarea class="form-control" id="text" rows="3" placeholder="Digita il messaggio" name="message"
+          <textarea class="form-control rounded-4" id="text" rows="10" placeholder="Digita il messaggio" name="message"
             v-model="text" required></textarea>
         </div>
-         <!-- messaggio invianto con successo -->
-        <button type="submit" class="btn btn-primary" data-bs-dismiss="offcanvas">Invia Messaggio</button>
+        <!-- messaggio invianto con successo -->
+        <button type="submit" class="btn btn-primary" :data-bs-dismiss=" email.includes('@') ? 'offcanvas' : '' ">Invia Messaggio</button>
       </form>
     </div>
   </div>
   <div v-if="messageSent" class="alert alert-success alert-dismissible fade show mt-3" role="alert">
-              Messaggio inviato con successo!
-              <button type="button" class="btn-close" @click="closeFlashMessage" aria-label="Close"></button>
-   </div>
+    Messaggio inviato con successo!
+    <button type="button" class="btn-close rounded-4" @click="closeFlashMessage" aria-label="Close"></button>
+  </div>
 </template>
 
 <style scoped lang="scss"></style>
