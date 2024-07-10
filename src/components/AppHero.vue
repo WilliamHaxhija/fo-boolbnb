@@ -91,9 +91,9 @@ export default {
             let sponsoredApartmentsUrl = `${store.apiBaseUrl}/api/sponsored-apartments`;
             console.log(sponsoredApartmentsUrl);
             axios.get(sponsoredApartmentsUrl)
-            .then((response) => {
-                this.sponsoredApartments = response.data;
-            });
+                .then((response) => {
+                    this.sponsoredApartments = response.data;
+                });
         }
     },
     mounted() {
@@ -105,12 +105,14 @@ export default {
 </script>
 
 <template>
-    <section :class="[sectionClasses, $route.name === 'home' ? 'ms_hero' : '']" class="py-4 d-flex align-items-center position-relative">
+    <section :class="[sectionClasses, $route.name === 'home' ? 'ms_hero' : '']"
+        class="py-4 d-flex align-items-center position-relative">
         <!-- Overlay nero trasparente -->
         <div :class="overlayClasses" class="overlay"></div>
         <div class="container position-relative">
-            <div class="row align-items-center" :class="$route.name === 'home' ? 'md-display-block' : ''">
-                <div class="col-lg-6 col-12 order-2 order-lg-1">
+            <div class="ms-bg rounded-4"></div>
+            <div class="row align-items-center rounded-4" :class="$route.name === 'home' ? 'md-display-block' : ''">
+                <div class="col-lg-6 col-12 order-2 order-lg-1 my-5 ">
                     <div v-if="$route.name === 'home'">
                         <AppSearch @search="getSuggestionsAddressFromApi" @dbResults="getApartmentsFromApi"></AppSearch>
                     </div>
@@ -133,11 +135,12 @@ export default {
                 <div class="ms-bg-sponsor rounded-4 p-3">
                     <h3 class="mb-5 text-center fw-bolder text-white">In Evidenza</h3>
                     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
-                        <AppSponsorships v-for="sponsoredApartment in sponsoredApartments" :sponsoredInfo="sponsoredApartment" :key="sponsoredApartment.id"></AppSponsorships>
+                        <AppSponsorships v-for="sponsoredApartment in sponsoredApartments"
+                            :sponsoredInfo="sponsoredApartment" :key="sponsoredApartment.id"></AppSponsorships>
                     </div>
                 </div>
             </div>
-       </section>
+        </section>
     </div>
 </template>
 
@@ -151,6 +154,7 @@ export default {
     background-position: center;
     position: relative;
     box-shadow: 0px 11px 31px -10px #000000;
+
     .overlay {
         position: absolute;
         top: 0;
@@ -159,9 +163,21 @@ export default {
         height: 100%;
         background: linear-gradient(to top, rgba(0, 0, 0, 0.68), rgba(0, 0, 0, 0.059));
     }
+
     .container {
         position: relative;
         z-index: 2;
+    }
+
+    .ms-bg {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: #ffffff4d;
+        filter: blur(8px);
+        -webkit-filter: blur(8px);
     }
 }
 
@@ -171,6 +187,7 @@ export default {
     height: 100px;
     width: 100%;
     color: white;
+
     .city {
         position: absolute;
         width: 100%;
@@ -181,14 +198,17 @@ export default {
         transition: all 0.5s ease;
         font-size: 80px;
     }
+
     .city.show {
         opacity: 1;
         transform: translateY(0);
     }
+
     .city.hide {
         opacity: 0;
         transform: translateY(-50px);
     }
+
     .city.next {
         transform: translateY(50px);
     }
@@ -201,6 +221,7 @@ export default {
 .rounded-0 {
     border-radius: 0 !important;
 }
+
 .ms-bg-sponsor {
     background-color: #4d93ad;
 }
